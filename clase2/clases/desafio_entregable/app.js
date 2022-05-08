@@ -1,45 +1,44 @@
 class Usuario {
-    constructor(nombre, apellido, libros, mascotas) {
+    constructor(nombre, apellido, libros = [], mascotas = []) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.libros = [];
-        this.mascotas = [];
+        this.libros = libros;
+        this.mascotas = mascotas;
     }
     getFullName() {
-        return console.log(`Nombre: ${this.nombre}\nApellido: ${this.apellido}`);
+        return `${this.nombre} ${this.apellido}`;
     }
     addMascota(mascota) {
         this.mascotas.push(mascota);
     }
     countMascotas() {
-        return console.log(`Cantidad de mascotas: ${this.mascotas.length}`);
+        return `${this.mascotas.length}`;
     }
-    addBook(nombre, autor) {
-        this.libros.push({nombre, autor});
+    addBook(libro) {
+        this.libros.push(libro);
     }
     getBookNames() {
-        console.log(`Libros de ${this.nombre} ${this.apellido}:`);
-        return this.libros.forEach(libro => console.log(`\t-${libro.nombre}`));
+        return this.libros.map(libro => `${libro.nombre}`);
     }
 }
 
 //Crea usuario
-const usuario = new Usuario("Javier", "Milei");
+const usuario = new Usuario("Javier", "Milei", [{nombre: "La Ley", autor: "Frédéric Bastiat"}, {nombre: "1984", autor: "George Orwell"}], ["Milton", "Ramiro"]);
 
 //Muestra el nombre completo del usuario creado
-usuario.getFullName();
+console.log(usuario.getFullName());;
 
 //Agrega una mascota al array de mascotas del usuario
 usuario.addMascota("León");
 usuario.addMascota("Mastín");
 
 //Muestra la cantidad de mascostas que tiene el usuario
-usuario.countMascotas();
+console.log(usuario.countMascotas());;
 
 //Agrega un libro al array de libros del usuario
-usuario.addBook("La riqueza de las naciones", "Adam Smith");
-usuario.addBook("La virtud del egoismo", "Ayn Rand");
-usuario.addBook("La fatal arrogancia", "Friedrich Hayek ");
+usuario.addBook({nombre: "La riqueza de las naciones", autor: "Adam Smith"});
+usuario.addBook({nombre: "La virtud del egoismo", autor: "Ayn Rand"});
+usuario.addBook({nombre: "La fatal arrogancia", autor: "Friedrich Hayek "});
 
 //Muestra los nombres de los libros del usuario
-usuario.getBookNames();
+console.log(usuario.getBookNames());;
