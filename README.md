@@ -69,3 +69,10 @@ Los valores de los atributos se deberán cargar a través del constructor, al mo
 1. Desarrollar una función ‘mostrarLetras’ que reciba un string como parámetro y permita mostrar una vez por segundo cada uno de sus caracteres.
 2. Al finalizar, debe invocar a la siguiente función que se le pasa también como parámetro: const fin = () => console.log('terminé')
 3. Realizar tres llamadas a ‘mostrarLetras’ con el mensaje ‘¡Hola!’ y demoras de 0, 250 y 500 mS verificando que los mensajes de salida se intercalen.
+
+### Fecha y hora
+
+1. Realizar un programa que:
+    - A) Guarde en un archivo llamado fyh.txt la fecha y hora actual.
+    - B) Lea nuestro propio archivo de programa y lo muestre por consola.
+    - C) Incluya el manejo de errores con try catch (progresando las excepciones con throw new Error).
