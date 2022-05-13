@@ -1,0 +1,12 @@
+{
+  "name": "lectura_y_escritura_de_archivos",
+  "version": "1.0.0",
+  "description": "Esta es la descripcion",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Coderhouse",
+  "license": "ISC"
+}

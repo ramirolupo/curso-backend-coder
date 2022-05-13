@@ -77,7 +77,7 @@ Los valores de los atributos se deberán cargar a través del constructor, al mo
     - B) Lea nuestro propio archivo de programa y lo muestre por consola.
     - C) Incluya el manejo de errores con try catch (progresando las excepciones con throw new Error).
 
-## Lectura y escritura de archivos
+### Lectura y escritura de archivos
 
 1. Escribir un programa ejecutable bajo node.js que realice las siguientes acciones:
     - Abra una terminal en el directorio del archivo y ejecute la instrucción: npm init -y. Esto creará un archivo especial (lo veremos más adelante) de nombre package.json.
@@ -101,3 +101,19 @@ Los valores de los atributos se deberán cargar a través del constructor, al mo
 ##### Ayuda:
 
 Para el Punto 3 considerar usar JSON.stringify(info, null, 2) para preservar el formato de representación del objeto en el archivo (2 representa en este caso la cantidad de espacios de indentación usadas al representar el objeto como string).
+
+### Lectura y escritura con promises
+
+1. Realizar un programa que ejecute las siguientes tareas:
+    - Lea el archivo info.txt generado en el desafío anterior deserializándolo en un objeto llamado info.
+    - Mostrar este objeto info en la consola.
+    - Modifique el author a "Coderhouse" y guarde el objeto serializado en otro archivo llamado package.json.coder
+    - Mostrar los errores por consola.
+
+##### Aclaraciones:
+
+-   Trabajar con fs.promises (then/catch).
+
+##### Ayuda:
+
+-   Para el punto 3 considerar usar JSON.stringify(info.contenidoObj, null,2) para preservar el formato de representación del objeto en el archivo.
