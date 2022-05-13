@@ -20,7 +20,7 @@
 
 2. Definir una función anónima que haga lo mismo que la del punto 1, e invocarla inmediatamente, pasando una lista con 3 números como argumento.
 
-3. Definir la función crearMultiplicador  que reciba un número y devuelva una función anónima que reciba segundo número y dé como resultado el producto de ambos. Luego, a partir de la función definida, crear dos funciones duplicar y triplicar, y probarlas con diferentes valores.
+3. Definir la función crearMultiplicador que reciba un número y devuelva una función anónima que reciba segundo número y dé como resultado el producto de ambos. Luego, a partir de la función definida, crear dos funciones duplicar y triplicar, y probarlas con diferentes valores.
 
 ### Clases
 
@@ -47,10 +47,10 @@ En este ejercicio construiremos una herramienta que permita que diferentes perso
 1. Declarar una clase Usuario
 
 2. Hacer que Usuario cuente con los siguientes atributos:
-nombre: String
-apellido: String
-libros: Object[]
-mascotas: String[]
+   nombre: String
+   apellido: String
+   libros: Object[]
+   mascotas: String[]
 
 Los valores de los atributos se deberán cargar a través del constructor, al momento de crear las instancias.
 
@@ -61,3 +61,11 @@ Los valores de los atributos se deberán cargar a través del constructor, al mo
     - addBook(String, String): void. Recibe un string 'nombre' y un string 'autor' y debe agregar un objeto: { nombre: String, autor: String } al array de libros.
     - getBookNames(): String[]. Retorna un array con sólo los nombres del array de libros del usuario.
 4. Crear un objeto llamado usuario con valores arbitrarios e invocar todos sus métodos.
+
+# CLASE 4
+
+### Asincronismo y callbacks
+
+1. Desarrollar una función ‘mostrarLetras’ que reciba un string como parámetro y permita mostrar una vez por segundo cada uno de sus caracteres.
+2. Al finalizar, debe invocar a la siguiente función que se le pasa también como parámetro: const fin = () => console.log('terminé')
+3. Realizar tres llamadas a ‘mostrarLetras’ con el mensaje ‘¡Hola!’ y demoras de 0, 250 y 500 mS verificando que los mensajes de salida se intercalen.

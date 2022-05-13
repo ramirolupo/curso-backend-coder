@@ -5,13 +5,13 @@ class Contador {
     }
     static cuentaGlobal = 0;
     obtenerResponsable() {
-        return console.log(`Nombre del responsable: ${this.nombre}`);
+        return `Nombre del responsable: ${this.nombre}`;
     }
     obtenerCuentaIndividual() {
-        return console.log(`Cuenta individual: ${this.cuentaIndividual}`);
+        return `Cuenta individual: ${this.cuentaIndividual}`;
     }
     obtenerCuentaGlobal() {
-        return console.log(`Cuenta global: ${Contador.cuentaGlobal}`);
+        return `Cuenta global: ${Contador.cuentaGlobal}`;
     }
     contar() {
         this.cuentaIndividual++;
@@ -24,15 +24,15 @@ const contador1 = new Contador("Nombre1");
 const contador2 = new Contador("Nombre2");
 
 //Ejecuto los métodos de las instancias creadas
-contador1.obtenerResponsable();
-contador1.obtenerCuentaIndividual();
+console.log(contador1.obtenerResponsable());
+console.log(contador1.obtenerCuentaIndividual());
 contador1.contar();
-contador1.obtenerCuentaIndividual();
-contador1.obtenerCuentaGlobal();
+console.log(contador1.obtenerCuentaIndividual());
+console.log(contador1.obtenerCuentaGlobal());
 
-contador2.obtenerResponsable();
-contador2.obtenerCuentaIndividual();
+console.log(contador2.obtenerResponsable());
+console.log(contador2.obtenerCuentaIndividual());
 contador2.contar();
 contador2.contar();
-contador2.obtenerCuentaIndividual();
-contador2.obtenerCuentaGlobal();
+console.log(contador2.obtenerCuentaIndividual());
+console.log(contador2.obtenerCuentaGlobal());
