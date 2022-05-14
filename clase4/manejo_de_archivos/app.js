@@ -7,70 +7,99 @@ class Contenedor {
         this.fileName = fileName;
     }
     static objetos = [];
-    save(obj) {
-        obj.id = Contenedor.objetos.length + 1;
-        Contenedor.objetos.push(obj);
-        fs.writeFileSync(
-            this.fileName,
-            JSON.stringify(Contenedor.objetos, null, 2)
-        );
-        return obj.id;
+    async save(obj) {
+        try {
+            obj.id = Contenedor.objetos.length + 1;
+            Contenedor.objetos.push(obj);
+            await fs.promises.writeFile(
+                this.fileName,
+                JSON.stringify(Contenedor.objetos, null, 2)
+            );
+            console.log('Id del producto: ', obj.id);
+        } catch (err) {
+            console.log(`Ocurrió un error ${err.message}`);
+        }
     }
-    getByID(id) {
-        const productos = JSON.parse(fs.readFileSync(this.fileName, 'utf-8'));
-        const obj = productos.find((o) => o.id === id);
-        return obj ? obj : null;
+    async getByID(id) {
+        try {
+            const productos = await fs.promises.readFile(
+                this.fileName,
+                'utf-8'
+            );
+            const prods = JSON.parse(productos);
+            const obj = prods.find(o => o.id === id);
+            obj ? console.log('Producto: ', obj) : console.log(null);
+        } catch (err) {
+            console.log(`Ocurrió un error ${err.message}`);
+        }
     }
-    getAll() {
-        return JSON.parse(fs.readFileSync(this.fileName, 'utf-8'));
+    async getAll() {
+        try {
+            const productos = await fs.promises.readFile(this.fileName, 'utf-8');
+            const arrProductos = JSON.parse(productos);
+            console.log('Productos: ', arrProductos);
+        } catch (err) {
+            console.log(`Ocurrió un error ${err.message}`);
+        }
     }
-    deleteByID(id) {
-        const arr = this.getAll();
-        const obj = arr.find((o) => o.id === id);
-        const newArr = arr.filter((o) => o.id != obj.id);
-        Contenedor.objetos = newArr;
-        fs.writeFileSync(this.fileName, JSON.stringify(newArr, null, 2));
+    async deleteByID(id) {
+        try {
+            const productos = await fs.promises.readFile(this.fileName, 'utf-8');
+            const arrProductos = JSON.parse(productos);
+            const obj = arrProductos.find(o => o.id === id);
+            const newArr = arrProductos.filter(o => o.id != obj.id);
+            Contenedor.objetos = newArr;
+            await fs.promises.writeFile(this.fileName, JSON.stringify(newArr, null, 2));
+            console.log(`Producto ${obj.title} eliminado`);
+        } catch (err) {
+            console.log(`Ocurrió un error ${err.message}`);
+        }
     }
-    deleteAll() {
-        Contenedor.objetos = [];
-        fs.writeFileSync(
-            this.fileName,
-            JSON.stringify(Contenedor.objetos, null, 2)
-        );
+    async deleteAll() {
+        try {
+            Contenedor.objetos = [];
+            await fs.promises.writeFile(
+                this.fileName,
+                JSON.stringify(Contenedor.objetos, null, 2)
+            );
+        } catch (err) {
+            console.log(`Ocurrió un error ${err.message}`);
+        }
     }
 }
 
 const productos = new Contenedor('productos.txt');
 
-productos.save({
-    title: 'nombre del producto1',
-    price: 100,
-    thumbnail: 'url de la foto del producto1',
-});
+// productos.save({
+//     title: 'producto1',
+//     price: 100,
+//     thumbnail: 'url de la foto del producto1',
+// });
 
-productos.save({
-    title: 'nombre del producto2',
-    price: 200,
-    thumbnail: 'url de la foto del producto2',
-});
+// productos.save({
+//     title: 'producto2',
+//     price: 200,
+//     thumbnail: 'url de la foto del producto2',
+// });
 
-console.log('Producto 1: ', productos.getByID(1));
-console.log('Productos: ', productos.getAll());
+// productos.save({
+//     title: 'nombre del producto3',
+//     price: 300,
+//     thumbnail: 'url de la foto del producto3',
+// });
 
-productos.deleteByID(2);
+// productos.save({
+//     title: 'nombre del producto4',
+//     price: 400,
+//     thumbnail: 'url de la foto del producto4',
+// });
 
-productos.save({
-    title: 'nombre del producto3',
-    price: 300,
-    thumbnail: 'url de la foto del producto3',
-});
+// productos.getAll();
 
-productos.save({
-    title: 'nombre del producto4',
-    price: 400,
-    thumbnail: 'url de la foto del producto4',
-});
+// productos.deleteAll();
 
-console.log('Productos: ', productos.getAll());
-productos.deleteAll();
-console.log('Productos: ', productos.getAll());
+// productos.getAll();
+
+// productos.getByID(1);
+
+// productos.deleteByID(2);
