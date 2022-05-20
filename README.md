@@ -170,3 +170,33 @@ Desde mi nacimiento han pasado 19036 días.
 
 #### Ayuda:
 Utilizar los métodos diff y format de la librería moment.
+
+# Clase 6
+
+### Mensaje según la hora
+
+1. Desarrollar un servidor en node.js que escuche peticiones en el puerto 8080 y responda un mensaje de acuerdo a la hora actual: 
+    - Si la hora actual se encuentra entre las 6 y las 12 hs será 'Buenos días!'.
+    - Entre las 13 y las 19 hs será 'Buenas tardes!'. 
+    - De 20 a 5 hs será 'Buenas noches!'.
+
+2. Se mostrará por consola cuando el servidor esté listo para operar y en qué puerto lo está haciendo.
+
+### Servidor con express
+
+1. Crear un proyecto de servidor http en node.js que utilice la dependencia express, escuche en el puerto 8080 y tenga tres rutas get configuradas:
+    - '/' en esta ruta raíz, el servidor enviará string con un elemento de título nivel 1 (un h1 en formato HTML) que contenga el mensaje: 'Bienvenidos al servidor express' en color azul.
+    - '/visitas' donde con cada request, el servidor devolverá un mensaje con la cantidad de visitas que se hayan realizado a este endpoint. Por ej. 'La cantidad de visitas es 10'
+    - '/fyh' donde se devolverá la fecha y hora actual en formato objeto: 
+    { fyh: '11/1/2021 11:36:04' }
+
+2. Mostrar por consola el puerto de escucha del servidor al momento de realizar el listen. En caso de error, representar el detalle.
+
+### Desafío entregable: Servidor con express
+
+1. Realizar un proyecto de servidor basado en node.js que utilice el módulo express e implemente los siguientes endpoints en el puerto 8080:
+    - Ruta get '/productos' que devuelva un array con todos los productos disponibles en el servidor
+    - Ruta get '/productoRandom' que devuelva un producto elegido al azar entre todos los productos disponibles
+    - Incluir un archivo de texto 'productos.txt' y utilizar la clase Contenedor del desafío anterior para acceder a los datos persistidos del servidor.
+
+2. Antes de iniciar el servidor, colocar en el archivo 'productos.txt' tres productos como en el ejemplo del desafío anterior.

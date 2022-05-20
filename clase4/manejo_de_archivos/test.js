@@ -2,7 +2,6 @@ console.clear();
 import Contenedor from './Contenedor.js';
 
 const productos = new Contenedor('contenedor.txt');
-console.log(productos.arr.length);
 
 //Pruebo el método save
 // productos.save({
