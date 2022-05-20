@@ -1,8 +1,6 @@
-console.clear();
+import fs from 'fs';
 
-const fs = require('fs');
-
-class Contenedor {
+export default class Contenedor {
     constructor(fileName) {
         this.fileName = fileName;
         this.arr = [];
@@ -10,8 +8,8 @@ class Contenedor {
     //Genera ID
     async generateId() {
         try {
-            this.arr = await this.getAll();
-            // console.log('this.arr', this.arr);
+            this.arr = await this.getAll() || [];
+            // console.log('this.arr', this.arr.length);
             let maxId = this.arr.length;
             // console.log('maxId', maxId);
             this.arr.forEach(el => {
@@ -29,6 +27,7 @@ class Contenedor {
     async save(obj) {
         try {
             const readFile = await this.getAll();
+            // console.log('readFile', readFile);
             if (!readFile) {
                 obj.id = await this.generateId();
                 // console.log('obj.id', obj.id);
@@ -37,7 +36,6 @@ class Contenedor {
                 fs.promises.writeFile(this.fileName, JSON.stringify(this.arr, null, 2));
                 return obj.id;
             }
-            console.log('readFile', readFile);
             this.arr = readFile;
             // console.log('this.arr', this.arr);
             obj.id = await this.generateId();
@@ -99,25 +97,3 @@ class Contenedor {
         }
     }
 }
-const productos = new Contenedor('contenedor.txt');
-
-//Pruebo el método save
-// productos.save({
-//     title: 'title',
-//     price: 100,
-//     thumbnail: 'url de la foto del producto'
-// });
-
-//Pruebo el método getAll
-// productos.getAll();
-
-//Pruebo el método getById
-// productos.getById(1);
-
-//Pruebo el método deleteById
-// productos.deleteById(1);
-
-//Pruebo el método deleteAll
-// productos.deleteAll();
-
-// productos.generateId();
