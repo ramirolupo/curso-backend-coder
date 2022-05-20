@@ -5,101 +5,119 @@ const fs = require('fs');
 class Contenedor {
     constructor(fileName) {
         this.fileName = fileName;
+        this.arr = [];
     }
-    static objetos = [];
+    //Genera ID
+    async generateId() {
+        try {
+            this.arr = await this.getAll();
+            // console.log('this.arr', this.arr);
+            let maxId = this.arr.length;
+            // console.log('maxId', maxId);
+            this.arr.forEach(el => {
+                // console.log('el.id', el.id);
+                // console.log('maxId', maxId);
+                el.id > maxId ? maxId = el.id : maxId
+            })
+            // console.log('maxId', maxId + 1);
+            return maxId + 1;
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    //Guarda un objeto
     async save(obj) {
         try {
-            obj.id = Contenedor.objetos.length + 1;
-            Contenedor.objetos.push(obj);
-            await fs.promises.writeFile(
-                this.fileName,
-                JSON.stringify(Contenedor.objetos, null, 2)
-            );
-            console.log('Id del producto: ', obj.id);
+            const readFile = await this.getAll();
+            if (!readFile) {
+                obj.id = await this.generateId();
+                // console.log('obj.id', obj.id);
+                this.arr.push(obj);
+                // console.log('this.arr', this.arr);
+                fs.promises.writeFile(this.fileName, JSON.stringify(this.arr, null, 2));
+                return obj.id;
+            }
+            console.log('readFile', readFile);
+            this.arr = readFile;
+            // console.log('this.arr', this.arr);
+            obj.id = await this.generateId();
+            // console.log('obj.id', obj.id);
+            this.arr.push(obj);
+            // console.log('this.arr', this.arr);
+            fs.promises.writeFile(this.fileName, JSON.stringify(this.arr, null, 2));
+            return obj.id;
         } catch (err) {
-            console.log(`Ocurrió un error ${err.message}`);
+            console.log(err);
         }
     }
-    async getByID(id) {
+    //Devuelve el objeto con el ID buscado
+    async getById(id) {
         try {
-            const productos = await fs.promises.readFile(
-                this.fileName,
-                'utf-8'
-            );
-            const prods = JSON.parse(productos);
-            const obj = prods.find(o => o.id === id);
-            obj ? console.log('Producto: ', obj) : console.log(null);
+            this.arr = await this.getAll();
+            // console.log('this.arr', this.arr);
+            const obj = this.arr.find(el => el.id === Number(id));
+            // console.log('obj', obj);
+            return obj ? obj : null;
         } catch (err) {
-            console.log(`Ocurrió un error ${err.message}`);
+            console.log(err);
         }
     }
+    //Devuelve un array con los objetos presentes en el archivo
     async getAll() {
         try {
-            const productos = await fs.promises.readFile(this.fileName, 'utf-8');
-            const arrProductos = JSON.parse(productos);
-            console.log('Productos: ', arrProductos);
+            const arr = await fs.promises.readFile(this.fileName, 'utf-8');
+            // console.log('arr', arr);
+            const arrParsed = JSON.parse(arr);
+            // console.log('arrParse', arrParse);
+            return arrParsed;
         } catch (err) {
-            console.log(`Ocurrió un error ${err.message}`);
+            console.log(err);
         }
     }
-    async deleteByID(id) {
+    //Elimina del archivo el objeto con el ID buscado
+    async deleteById(id) {
         try {
-            const productos = await fs.promises.readFile(this.fileName, 'utf-8');
-            const arrProductos = JSON.parse(productos);
-            const obj = arrProductos.find(o => o.id === id);
-            const newArr = arrProductos.filter(o => o.id != obj.id);
-            Contenedor.objetos = newArr;
-            await fs.promises.writeFile(this.fileName, JSON.stringify(newArr, null, 2));
-            console.log(`Producto ${obj.title} eliminado`);
+            this.arr = await this.getAll();
+            // console.log('this.arr', this.arr);
+            this.arr = this.arr.filter(el => el.id != Number(id));
+            // console.log('objDel', objDel);
+            fs.promises.writeFile(this.fileName, JSON.stringify(this.arr, null, 2));
         } catch (err) {
-            console.log(`Ocurrió un error ${err.message}`);
+            console.log(err);
         }
     }
+    //Elimina todos los objetos guardados en el archivo
     async deleteAll() {
         try {
-            Contenedor.objetos = [];
-            await fs.promises.writeFile(
-                this.fileName,
-                JSON.stringify(Contenedor.objetos, null, 2)
-            );
+            this.arr = await this.getAll();
+            // console.log('this.arr', this.arr);
+            this.arr = [];
+            fs.promises.writeFile(this.fileName, JSON.stringify(this.arr, null, 2));
+            // console.log('this.arr', this.arr);
         } catch (err) {
-            console.log(`Ocurrió un error ${err.message}`);
+            console.log(err);
         }
     }
 }
+const productos = new Contenedor('contenedor.txt');
 
-const productos = new Contenedor('productos.txt');
-
+//Pruebo el método save
 // productos.save({
-//     title: 'producto1',
+//     title: 'title',
 //     price: 100,
-//     thumbnail: 'url de la foto del producto1',
+//     thumbnail: 'url de la foto del producto'
 // });
 
-// productos.save({
-//     title: 'producto2',
-//     price: 200,
-//     thumbnail: 'url de la foto del producto2',
-// });
-
-// productos.save({
-//     title: 'nombre del producto3',
-//     price: 300,
-//     thumbnail: 'url de la foto del producto3',
-// });
-
-// productos.save({
-//     title: 'nombre del producto4',
-//     price: 400,
-//     thumbnail: 'url de la foto del producto4',
-// });
-
+//Pruebo el método getAll
 // productos.getAll();
 
+//Pruebo el método getById
+// productos.getById(1);
+
+//Pruebo el método deleteById
+// productos.deleteById(1);
+
+//Pruebo el método deleteAll
 // productos.deleteAll();
 
-// productos.getAll();
-
-// productos.getByID(1);
-
-// productos.deleteByID(2);
+// productos.generateId();
