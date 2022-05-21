@@ -1,5 +1,5 @@
+const Contenedor = require('./Contenedor.js');
 console.clear();
-import Contenedor from './Contenedor.js';
 
 const productos = new Contenedor('contenedor.txt');
 

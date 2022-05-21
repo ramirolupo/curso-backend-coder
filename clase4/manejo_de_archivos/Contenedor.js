@@ -1,6 +1,6 @@
-import fs from 'fs';
+const fs = require('fs');
 
-export default class Contenedor {
+class Contenedor {
     constructor(fileName) {
         this.fileName = fileName;
         this.arr = [];
@@ -97,3 +97,4 @@ export default class Contenedor {
         }
     }
 }
+module.exports = Contenedor;

@@ -1,5 +1,5 @@
-import express from 'express';
-import Contenedor from '../../clase4/manejo_de_archivos/Contenedor.js';
+const Contenedor = require('../../clase4/manejo_de_archivos/Contenedor.js');
+const express = require('express');
 
 const PORT = 8080;
 const app = express();
