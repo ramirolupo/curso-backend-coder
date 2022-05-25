@@ -203,9 +203,21 @@ Utilizar los métodos diff y format de la librería moment.
 
 # Clase 7
 
+### Get endpoints
+
 Dada la siguiente constante: const frase = 'Hola mundo cómo están'
 1. Realizar un servidor con API Rest usando node.js y express que contenga los siguientes endpoints get:
 
     - '/api/frase' -> devuelve la frase en forma completa en un campo ‘frase’.
     - '/api/letras/:num  -> devuelve por número de orden la letra dentro de esa frase (num 1 refiere a la primera letra), en un campo ‘letra’.
     - '/api/palabras/:num  -> devuelve por número de orden la palabra dentro de esa frase (num 1 refiere a la primera palabra), en un campo ‘palabra’.
+
+### Operaciones con el servidor
+
+1. Desarrollar un servidor que permita realizar la suma entre dos números utilizando tres rutas en estos formatos (Ejemplo con números 5 y 6)
+    - Ruta get '/api/sumar/5/6
+    - Ruta get '/api/sumar?num1=5&num2=62) 
+    - Ruta get '/api/operacion/5+6
+- No hace falta validar los datos a sumar, asumimos que los ingresamos correctamente.
+2. Implementar las rutas post, put y delete en la dirección '/api' respondiendo 'ok' + (post/put/delete) según corresponda. Probar estas rutas con Postman, verificando que el servidor responda con el mensaje correcto.
+3. El servidor escuchará en el puerto 8080 y mostrará todos los mensajes de conexión/error que correspondan.
