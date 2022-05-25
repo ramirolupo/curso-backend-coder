@@ -200,3 +200,12 @@ Utilizar los métodos diff y format de la librería moment.
     - Incluir un archivo de texto 'productos.txt' y utilizar la clase Contenedor del desafío anterior para acceder a los datos persistidos del servidor.
 
 2. Antes de iniciar el servidor, colocar en el archivo 'productos.txt' tres productos como en el ejemplo del desafío anterior.
+
+# Clase 7
+
+Dada la siguiente constante: const frase = 'Hola mundo cómo están'
+1. Realizar un servidor con API Rest usando node.js y express que contenga los siguientes endpoints get:
+
+    - '/api/frase' -> devuelve la frase en forma completa en un campo ‘frase’.
+    - '/api/letras/:num  -> devuelve por número de orden la letra dentro de esa frase (num 1 refiere a la primera letra), en un campo ‘letra’.
+    - '/api/palabras/:num  -> devuelve por número de orden la palabra dentro de esa frase (num 1 refiere a la primera palabra), en un campo ‘palabra’.
