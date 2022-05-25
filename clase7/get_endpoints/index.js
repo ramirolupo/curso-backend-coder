@@ -12,12 +12,18 @@ app.get('/api/frase', (req, res) => {
 })
 
 app.get('/api/letras/:num', (req, res) => {
-    let num = parseInt(Object.values(req.params));
+    let param = Object.values(req.params);
+    if (isNaN(param)) return res.send({ error: 'El parámetro no es un número' });
+    let num = parseInt(param);
+    if (num < 1 || num > frase.length) return res.send({ error: 'El parámetro está fuera de rango' });
     res.status(200).json({ letra: frase[num - 1] });
 });
 
 app.get('/api/palabras/:num', (req, res) => {
-    let num = parseInt(Object.values(req.params));
+    let param = Object.values(req.params);
+    if (isNaN(param)) return res.send({ error: 'El parámetro no es un número' });
+    let num = parseInt(param);
     const palabras = frase.split(' ');
+    if (num < 1 || num > palabras.length) return res.send({ error: 'El parámetro está fuera de rango' });
     res.status(200).json({ palabra: palabras[num - 1] });
 });
