@@ -3,7 +3,7 @@ const express = require('express');
 
 const PORT = 8080;
 const app = express();
-const server = app.listen(PORT, () => console.log(`Server listening on PORT ${PORT}`));
+const server = app.listen(process.env.PORT || PORT, () => console.log(`Server listening on PORT ${PORT}`));
 server.on('error', err => console.log(`Error: ${err}`));
 
 const productos = new Contenedor('productos.txt');
