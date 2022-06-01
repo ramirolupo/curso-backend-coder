@@ -132,29 +132,29 @@ Para el Punto 3 considerar usar JSON.stringify(info, null, 2) para preservar el 
 
 ### Números aleatorios
 
-- Crear un proyecto en node.js que genere 10000 números aleatorios en el rango  de 1 a 20.
-- Crear un objeto cuyas claves sean los números salidos y el valor asociado a cada clave será la cantidad de veces que salió dicho número. Representar por consola los resultados.
+-   Crear un proyecto en node.js que genere 10000 números aleatorios en el rango de 1 a 20.
+-   Crear un objeto cuyas claves sean los números salidos y el valor asociado a cada clave será la cantidad de veces que salió dicho número. Representar por consola los resultados.
 
 ### Array de objetos
 
-- Desarrollar un proyecto en node.js que declare un array de objetos de este tipo:
+-   Desarrollar un proyecto en node.js que declare un array de objetos de este tipo:
 
 const productos = [
-    { id:1, nombre:'Escuadra', precio:323.45 },
-    { id:2, nombre:'Calculadora', precio:234.56 },
-    { id:3, nombre:'Globo Terráqueo', precio:45.67 },
-    { id:4, nombre:'Paleta Pintura', precio:456.78 },
-    { id:5, nombre:'Reloj', precio:67.89 },
-    { id:6, nombre:'Agenda', precio:78.90 }
+{ id:1, nombre:'Escuadra', precio:323.45 },
+{ id:2, nombre:'Calculadora', precio:234.56 },
+{ id:3, nombre:'Globo Terráqueo', precio:45.67 },
+{ id:4, nombre:'Paleta Pintura', precio:456.78 },
+{ id:5, nombre:'Reloj', precio:67.89 },
+{ id:6, nombre:'Agenda', precio:78.90 }
 ]
 
-- Y obtenga la siguiente información de dicho array
-    - Los nombres de los productos en un string separados por comas.
-    - El precio total
-    - El precio promedio
-    - El producto con menor precio
-    - El producto con mayor precio
-    - Con los datos de los puntos 1 al 5 crear un objeto y representarlo por consola
+-   Y obtenga la siguiente información de dicho array
+    -   Los nombres de los productos en un string separados por comas.
+    -   El precio total
+    -   El precio promedio
+    -   El producto con menor precio
+    -   El producto con mayor precio
+    -   Con los datos de los puntos 1 al 5 crear un objeto y representarlo por consola
 
 ##### Aclaración: todos los valores monetarios serán expresados con 2 decimales
 
@@ -169,15 +169,17 @@ Desde mi nacimiento han pasado 52 años.
 Desde mi nacimiento han pasado 19036 días.
 
 #### Ayuda:
+
 Utilizar los métodos diff y format de la librería moment.
 
 # Clase 6
 
 ### Mensaje según la hora
 
-1. Desarrollar un servidor en node.js que escuche peticiones en el puerto 8080 y responda un mensaje de acuerdo a la hora actual: 
+1. Desarrollar un servidor en node.js que escuche peticiones en el puerto 8080 y responda un mensaje de acuerdo a la hora actual:
+
     - Si la hora actual se encuentra entre las 6 y las 12 hs será 'Buenos días!'.
-    - Entre las 13 y las 19 hs será 'Buenas tardes!'. 
+    - Entre las 13 y las 19 hs será 'Buenas tardes!'.
     - De 20 a 5 hs será 'Buenas noches!'.
 
 2. Se mostrará por consola cuando el servidor esté listo para operar y en qué puerto lo está haciendo.
@@ -185,16 +187,18 @@ Utilizar los métodos diff y format de la librería moment.
 ### Servidor con express
 
 1. Crear un proyecto de servidor http en node.js que utilice la dependencia express, escuche en el puerto 8080 y tenga tres rutas get configuradas:
+
     - '/' en esta ruta raíz, el servidor enviará string con un elemento de título nivel 1 (un h1 en formato HTML) que contenga el mensaje: 'Bienvenidos al servidor express' en color azul.
     - '/visitas' donde con cada request, el servidor devolverá un mensaje con la cantidad de visitas que se hayan realizado a este endpoint. Por ej. 'La cantidad de visitas es 10'
-    - '/fyh' donde se devolverá la fecha y hora actual en formato objeto: 
-    { fyh: '11/1/2021 11:36:04' }
+    - '/fyh' donde se devolverá la fecha y hora actual en formato objeto:
+      { fyh: '11/1/2021 11:36:04' }
 
 2. Mostrar por consola el puerto de escucha del servidor al momento de realizar el listen. En caso de error, representar el detalle.
 
 ### Desafío entregable: Servidor con express
 
 1. Realizar un proyecto de servidor basado en node.js que utilice el módulo express e implemente los siguientes endpoints en el puerto 8080:
+
     - Ruta get '/productos' que devuelva un array con todos los productos disponibles en el servidor
     - Ruta get '/productoRandom' que devuelva un producto elegido al azar entre todos los productos disponibles
     - Incluir un archivo de texto 'productos.txt' y utilizar la clase Contenedor del desafío anterior para acceder a los datos persistidos del servidor.
@@ -206,25 +210,29 @@ Utilizar los métodos diff y format de la librería moment.
 ### Get endpoints
 
 Dada la siguiente constante: const frase = 'Hola mundo cómo están'
+
 1. Realizar un servidor con API Rest usando node.js y express que contenga los siguientes endpoints get:
 
     - '/api/frase' -> devuelve la frase en forma completa en un campo ‘frase’.
-    - '/api/letras/:num  -> devuelve por número de orden la letra dentro de esa frase (num 1 refiere a la primera letra), en un campo ‘letra’.
-    - '/api/palabras/:num  -> devuelve por número de orden la palabra dentro de esa frase (num 1 refiere a la primera palabra), en un campo ‘palabra’.
+    - '/api/letras/:num -> devuelve por número de orden la letra dentro de esa frase (num 1 refiere a la primera letra), en un campo ‘letra’.
+    - '/api/palabras/:num -> devuelve por número de orden la palabra dentro de esa frase (num 1 refiere a la primera palabra), en un campo ‘palabra’.
 
 ### Operaciones con el servidor
 
 1. Desarrollar un servidor que permita realizar la suma entre dos números utilizando tres rutas en estos formatos (Ejemplo con números 5 y 6)
     - Ruta get '/api/sumar/5/6
-    - Ruta get '/api/sumar?num1=5&num2=62) 
+    - Ruta get '/api/sumar?num1=5&num2=62)
     - Ruta get '/api/operacion/5+6
-- No hace falta validar los datos a sumar, asumimos que los ingresamos correctamente.
+
+-   No hace falta validar los datos a sumar, asumimos que los ingresamos correctamente.
+
 2. Implementar las rutas post, put y delete en la dirección '/api' respondiendo 'ok' + (post/put/delete) según corresponda. Probar estas rutas con Postman, verificando que el servidor responda con el mensaje correcto.
 3. El servidor escuchará en el puerto 8080 y mostrará todos los mensajes de conexión/error que correspondan.
 
 ### Servidor con get, post, put y delete
 
-- Considere la siguiente frase: ‘Frase inicial’
+-   Considere la siguiente frase: ‘Frase inicial’
+
 1. Realizar una aplicación de servidor node.js con express que incorpore las siguientes rutas:
     - GET '/api/frase': devuelve un objeto que como campo ‘frase’ contenga la frase completa
     - GET '/api/palabras/:pos': devuelve un objeto que como campo ‘buscada’ contenga la palabra hallada en la frase en la posición dada (considerar que la primera palabra es la #1.
@@ -234,15 +242,15 @@ Dada la siguiente constante: const frase = 'Hola mundo cómo están'
 
 #### Aclaraciones:
 
-- Utilizar Postman para probar la funcionalidad.
-- El servidor escuchará peticiones en el puerto 8080 y mostrará en la consola un mensaje de conexión que muestre dicho puerto, junto a los mensajes de error si ocurriesen.
+-   Utilizar Postman para probar la funcionalidad.
+-   El servidor escuchará peticiones en el puerto 8080 y mostrará en la consola un mensaje de conexión que muestre dicho puerto, junto a los mensajes de error si ocurriesen.
 
 # Clase 7
 
 ### Express router
 
 1. Crear un servidor que permita manejar una lista de mascotas y personas. Debe poseer dos rutas principales: '/mascotas' y '/personas', las cuales deben incluir métodos para listar y para agregar recursos: GET: devolverá la lista requerida en formato objeto.
-    - POST: permitirá guardar una persona ó mascota en arrays propios en memoria, con el siguiente formato: 
+    - POST: permitirá guardar una persona ó mascota en arrays propios en memoria, con el siguiente formato:
         - Persona -> { "nombre": ..., "apellido": ..., "edad":... }
         - Mascota -> { "nombre":..., "raza":..., "edad":... }
 2. Utilizar el Router de express para definir las rutas base, implementando las subrutas en los métodos correspondientes.
@@ -251,33 +259,61 @@ Dada la siguiente constante: const frase = 'Hola mundo cómo están'
 
 ### Carpeta public
 
-1. Partiendo del ejercicio anterior, generar una carpeta pública 'public' en el servidor, la cual tendrá un archivo index.html. 
+1. Partiendo del ejercicio anterior, generar una carpeta pública 'public' en el servidor, la cual tendrá un archivo index.html.
 2. En ese archivo se encontrarán dos formularios: uno que permita ingresar mascotas y otro personas utilizando el método post
 3. Probar el ingreso de datos mediante los formularios y con Postman
 4. Verificar los datos cargados en cada caso.
 
 ### API RESTful
 
->> Consigna: Realizar un proyecto de servidor basado en node.js y express que ofrezca una API RESTful de productos. En detalle, que incorpore las siguientes rutas:
-  - GET '/api/productos' -> devuelve todos los productos.
-  - GET '/api/productos/:id' -> devuelve un producto según su id.
-  - POST '/api/productos' -> recibe y agrega un producto, y lo devuelve con su id asignado.
-  - PUT '/api/productos/:id' -> recibe y actualiza un producto según su id.
-  - DELETE '/api/productos/:id' -> elimina un producto según su id.
-  - Cada producto estará representado por un objeto con el siguiente formato:
+> > Consigna: Realizar un proyecto de servidor basado en node.js y express que ofrezca una API RESTful de productos. En detalle, que incorpore las siguientes rutas:
+
+-   GET '/api/productos' -> devuelve todos los productos.
+-   GET '/api/productos/:id' -> devuelve un producto según su id.
+-   POST '/api/productos' -> recibe y agrega un producto, y lo devuelve con su id asignado.
+-   PUT '/api/productos/:id' -> recibe y actualiza un producto según su id.
+-   DELETE '/api/productos/:id' -> elimina un producto según su id.
+-   Cada producto estará representado por un objeto con el siguiente formato:
 
 {
-    title: (nombre del producto),
-    price: (precio),
-    thumbnail: (url al logo o foto del producto)
+title: (nombre del producto),
+price: (precio),
+thumbnail: (url al logo o foto del producto)
 }
 
-- Cada ítem almacenado dispondrá de un id numérico proporcionado por el backend, comenzando en 1, y que se irá incrementando a medida de que se incorporen productos. Ese id será utilizado para identificar un producto que va a ser listado en forma individual.
+-   Cada ítem almacenado dispondrá de un id numérico proporcionado por el backend, comenzando en 1, y que se irá incrementando a medida de que se incorporen productos. Ese id será utilizado para identificar un producto que va a ser listado en forma individual.
 
-- Para el caso de que un producto no exista, se devolverá el objeto:
-{ error : 'producto no encontrado' }
-- Implementar la API en una clase separada, utilizando un array como soporte de persistencia en memoria.
-- Incorporar el Router de express en la url base '/api/productos' y configurar todas las subrutas en base a este.
-- Crear un espacio público de servidor que contenga un documento index.html con un formulario de ingreso de productos con los datos apropiados.
-- El servidor debe estar basado en express y debe implementar los mensajes de conexión al puerto 8080 y en caso de error, representar la descripción del mismo.
-- Las respuestas del servidor serán en formato JSON. La funcionalidad será probada a través de Postman y del formulario de ingreso.
+-   Para el caso de que un producto no exista, se devolverá el objeto:
+    { error : 'producto no encontrado' }
+-   Implementar la API en una clase separada, utilizando un array como soporte de persistencia en memoria.
+-   Incorporar el Router de express en la url base '/api/productos' y configurar todas las subrutas en base a este.
+-   Crear un espacio público de servidor que contenga un documento index.html con un formulario de ingreso de productos con los datos apropiados.
+-   El servidor debe estar basado en express y debe implementar los mensajes de conexión al puerto 8080 y en caso de error, representar la descripción del mismo.
+-   Las respuestas del servidor serán en formato JSON. La funcionalidad será probada a través de Postman y del formulario de ingreso.
+
+# Clase 8
+
+### Datos personales
+
+1. Realizar una página web que permita mostrar datos personales de la siguiente forma:
+
+-   <h1>Datos Personales</h1>
+-   <ul>
+-               <li>(nombre)</li>
+-               <li>(apellido)</li>
+-               <li>(edad)</li>
+-               <li>(email)</li>
+-               <li>(teléfono)</li>
+-   </ul>
+
+2. Con los datos que provienen desde un objeto:
+
+-   {
+-               nombre: '...',
+-               apellido: '...',
+-               edad: ...,
+-               email: '...',
+-               telefono: '...'
+-   }
+
+3. Importar Handlebars vía CDN en el frontend para crear dicha vista en forma dinámica. Esta página será servida desde el espacio público de un servidor basado en node.js y express.
