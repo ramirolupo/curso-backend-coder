@@ -245,7 +245,7 @@ Dada la siguiente constante: const frase = 'Hola mundo cómo están'
 -   Utilizar Postman para probar la funcionalidad.
 -   El servidor escuchará peticiones en el puerto 8080 y mostrará en la consola un mensaje de conexión que muestre dicho puerto, junto a los mensajes de error si ocurriesen.
 
-# Clase 7
+# Clase 8
 
 ### Express router
 
@@ -291,7 +291,7 @@ thumbnail: (url al logo o foto del producto)
 -   El servidor debe estar basado en express y debe implementar los mensajes de conexión al puerto 8080 y en caso de error, representar la descripción del mismo.
 -   Las respuestas del servidor serán en formato JSON. La funcionalidad será probada a través de Postman y del formulario de ingreso.
 
-# Clase 8
+# Clase 9
 
 ### Datos personales
 
@@ -299,21 +299,21 @@ thumbnail: (url al logo o foto del producto)
 
 -   <h1>Datos Personales</h1>
 -   <ul>
--                                         <li>(nombre)</li>
--                                         <li>(apellido)</li>
--                                         <li>(edad)</li>
--                                         <li>(email)</li>
--                                         <li>(teléfono)</li>
+-                                                     <li>(nombre)</li>
+-                                                     <li>(apellido)</li>
+-                                                     <li>(edad)</li>
+-                                                     <li>(email)</li>
+-                                                     <li>(teléfono)</li>
 -   </ul>
 
 2. Con los datos que provienen desde un objeto:
 
 -   {
--                                         nombre: '...',
--                                         apellido: '...',
--                                         edad: ...,
--                                         email: '...',
--                                         telefono: '...'
+-                                                     nombre: '...',
+-                                                     apellido: '...',
+-                                                     edad: ...,
+-                                                     email: '...',
+-                                                     telefono: '...'
 -   }
 
 3. Importar Handlebars vía CDN en el frontend para crear dicha vista en forma dinámica. Esta página será servida desde el espacio público de un servidor basado en node.js y express.
@@ -339,3 +339,22 @@ thumbnail: (url al logo o foto del producto)
 
 3. Este motor personalizado debe permitir parsear objetos de datos con claves dinámicas y volcar sus valores en la plantilla seleccionada.
 4. Crear otra ruta '/cte2' que represente otro archivo de plantilla: 'plantilla2.cte' con los datos nombre, apellido y la fecha/hora provenientes de un objeto.
+
+### Handlebars con express
+
+1. Transformar el primer desafío, pero esta vez la página dinámica la creará el servidor desde handlebars instalado y configurado para trabajar con express.
+2. Utilizar la misma estructura de plantilla HTML dentro de una pagina web con encabezado y el mismo objeto de datos.
+3. El servidor escuchará en el puerto 8080 y el resultado lo ofrecerá en su ruta root.
+
+# Clase 10
+
+### Pug
+
+1. Realizar un servidor que reciba por query params (mediante la ruta get '/datos') el valor que debe representar una barra de medición (usando el tag de html meter).
+2. Asimismo recibirá además los valores mínimos y máximos permitidos y el título que se pondrá por arriba de la barra, en un elemento h1 en color azul (debe permitir formato HTML).
+
+-   Ejemplo de petición:
+    http://localhost:8080/datos?min=10&nivel=15&max=20&titulo=<i>Medidor</i>
+
+3. Como respuesta a este request, el servidor devolverá al frontend una plantilla armada con los datos recibidos.
+4. Utilizar pug integrado a express, manejando una plantilla común y una particular con la representación requerida.
