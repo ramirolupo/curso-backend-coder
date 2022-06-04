@@ -299,21 +299,21 @@ thumbnail: (url al logo o foto del producto)
 
 -   <h1>Datos Personales</h1>
 -   <ul>
--                                                     <li>(nombre)</li>
--                                                     <li>(apellido)</li>
--                                                     <li>(edad)</li>
--                                                     <li>(email)</li>
--                                                     <li>(teléfono)</li>
+-                                                         <li>(nombre)</li>
+-                                                         <li>(apellido)</li>
+-                                                         <li>(edad)</li>
+-                                                         <li>(email)</li>
+-                                                         <li>(teléfono)</li>
 -   </ul>
 
 2. Con los datos que provienen desde un objeto:
 
 -   {
--                                                     nombre: '...',
--                                                     apellido: '...',
--                                                     edad: ...,
--                                                     email: '...',
--                                                     telefono: '...'
+-                                                         nombre: '...',
+-                                                         apellido: '...',
+-                                                         edad: ...,
+-                                                         email: '...',
+-                                                         telefono: '...'
 -   }
 
 3. Importar Handlebars vía CDN en el frontend para crear dicha vista en forma dinámica. Esta página será servida desde el espacio público de un servidor basado en node.js y express.
@@ -358,3 +358,7 @@ thumbnail: (url al logo o foto del producto)
 
 3. Como respuesta a este request, el servidor devolverá al frontend una plantilla armada con los datos recibidos.
 4. Utilizar pug integrado a express, manejando una plantilla común y una particular con la representación requerida.
+
+### EJS
+
+1. Realizar el mismo ejercicio que en el desafío anterior, utilizando ejs.
