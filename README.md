@@ -299,21 +299,21 @@ thumbnail: (url al logo o foto del producto)
 
 -   <h1>Datos Personales</h1>
 -   <ul>
--                                                                                     <li>(nombre)</li>
--                                                                                     <li>(apellido)</li>
--                                                                                     <li>(edad)</li>
--                                                                                     <li>(email)</li>
--                                                                                     <li>(teléfono)</li>
+-                                                                                                       <li>(nombre)</li>
+-                                                                                                       <li>(apellido)</li>
+-                                                                                                       <li>(edad)</li>
+-                                                                                                       <li>(email)</li>
+-                                                                                                       <li>(teléfono)</li>
 -   </ul>
 
 2. Con los datos que provienen desde un objeto:
 
 -   {
--                                                                                     nombre: '...',
--                                                                                     apellido: '...',
--                                                                                     edad: ...,
--                                                                                     email: '...',
--                                                                                     telefono: '...'
+-                                                                                                       nombre: '...',
+-                                                                                                       apellido: '...',
+-                                                                                                       edad: ...,
+-                                                                                                       email: '...',
+-                                                                                                       telefono: '...'
 -   }
 
 3. Importar Handlebars vía CDN en el frontend para crear dicha vista en forma dinámica. Esta página será servida desde el espacio público de un servidor basado en node.js y express.
@@ -391,3 +391,19 @@ thumbnail: (url al logo o foto del producto)
 > > Opcional:
 
 -   Utilizar bootstrap para maquetar la vista creada por dicho motor de plantillas y el formulario de ingreso de productos.
+
+# Clase 11
+
+### Servidor con Websocket
+
+1. Desarrollar un servidor basado en express que tenga integrado Websocket. Con cada conexión de cliente, el servidor debe emitir por consola en mensaje: '¡Nuevo cliente conectado!'
+
+2. Sobre la estructura anteriormente creada, agregar en la vista de cliente un elemento de entrada de texto donde al introducir texto, el mensaje se vea reflejado en todos los clientes conectados en un párrafo por debajo del input.
+   El texto debe ser enviado caracter a caracter y debe reemplazar el mensaje previo.
+
+3. Basado en el ejercicio que venimos realizando, ahora los mensajes enviados por los clientes deberán ser almacenados en el servidor y reflejados por debajo del elemento de entrada de texto cada vez que el usuario haga un envío. La estructura de almacenamiento será un array de objetos, donde cada objeto tendrá la siguiente estructura:
+   { socketid: (el socket.id del que envió el mensaje), mensaje: (texto enviado)}
+
+Cada cliente que se conecte recibirá la lista de mensajes completa.
+Modificar el elemento de entrada en el cliente para que disponga de un botón de envío de mensaje.
+Cada mensaje de cliente se representará en un renglón aparte, anteponiendo el socket id.
