@@ -407,3 +407,13 @@ thumbnail: (url al logo o foto del producto)
 Cada cliente que se conecte recibirá la lista de mensajes completa.
 Modificar el elemento de entrada en el cliente para que disponga de un botón de envío de mensaje.
 Cada mensaje de cliente se representará en un renglón aparte, anteponiendo el socket id.
+
+# Clase 12
+
+### Chat colaborativo
+
+1. En base a lo desarrollado en clase, realizar una aplicación basada en node.js, express y websocket que permita generar un chat colaborativo entre usuarios conectados.
+2. Cada usuario podrá ingresar su nombre y mensaje a través de un formulario y enviar la información utilizando el canal de websocket. 
+3. Los mensajes serán presentados en tiempo real en cada uno de los clientes. 
+Cuando un usuario nuevo se conecte, recibirá todos los mensajes hasta ahí ingresados. 
+4. Los mensajes persistirán en memoria del servidor.
