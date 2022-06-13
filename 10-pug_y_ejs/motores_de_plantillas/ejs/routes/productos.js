@@ -8,7 +8,7 @@ router.get('/productos', (req, res) => {
     res.render('form');
 })
 
-router.get('/listaproductos', (req, res) => {
+router.get('/', (req, res) => {
     res.render('productos', { productos });
 })
 
