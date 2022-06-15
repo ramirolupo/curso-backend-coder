@@ -1,0 +1,18 @@
+{
+  "name": "color_aleatorio",
+  "version": "1.0.0",
+  "description": "",
+  "main": "color_aleatorio_con_babel.js",
+  "scripts": {
+    "build": "babel ./color.js -o ./destino.js -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.18.5",
+    "@babel/preset-env": "^7.18.2"
+  }
+}
