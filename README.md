@@ -299,21 +299,21 @@ thumbnail: (url al logo o foto del producto)
 
 -   <h1>Datos Personales</h1>
 -   <ul>
--                                                                                                       <li>(nombre)</li>
--                                                                                                       <li>(apellido)</li>
--                                                                                                       <li>(edad)</li>
--                                                                                                       <li>(email)</li>
--                                                                                                       <li>(teléfono)</li>
+-                                                                                                               <li>(nombre)</li>
+-                                                                                                               <li>(apellido)</li>
+-                                                                                                               <li>(edad)</li>
+-                                                                                                               <li>(email)</li>
+-                                                                                                               <li>(teléfono)</li>
 -   </ul>
 
 2. Con los datos que provienen desde un objeto:
 
 -   {
--                                                                                                       nombre: '...',
--                                                                                                       apellido: '...',
--                                                                                                       edad: ...,
--                                                                                                       email: '...',
--                                                                                                       telefono: '...'
+-                                                                                                               nombre: '...',
+-                                                                                                               apellido: '...',
+-                                                                                                               edad: ...,
+-                                                                                                               email: '...',
+-                                                                                                               telefono: '...'
 -   }
 
 3. Importar Handlebars vía CDN en el frontend para crear dicha vista en forma dinámica. Esta página será servida desde el espacio público de un servidor basado en node.js y express.
@@ -413,24 +413,40 @@ Cada mensaje de cliente se representará en un renglón aparte, anteponiendo el 
 ### Chat colaborativo
 
 1. En base a lo desarrollado en clase, realizar una aplicación basada en node.js, express y websocket que permita generar un chat colaborativo entre usuarios conectados.
-2. Cada usuario podrá ingresar su nombre y mensaje a través de un formulario y enviar la información utilizando el canal de websocket. 
-3. Los mensajes serán presentados en tiempo real en cada uno de los clientes. 
-Cuando un usuario nuevo se conecte, recibirá todos los mensajes hasta ahí ingresados. 
+2. Cada usuario podrá ingresar su nombre y mensaje a través de un formulario y enviar la información utilizando el canal de websocket.
+3. Los mensajes serán presentados en tiempo real en cada uno de los clientes.
+   Cuando un usuario nuevo se conecte, recibirá todos los mensajes hasta ahí ingresados.
 4. Los mensajes persistirán en memoria del servidor.
 
 ### Websockets
 
->> Consigna 1:  Modificar el último entregable para que disponga de un canal de websocket que permita representar, por debajo del formulario de ingreso, una tabla con la lista de productos en tiempo real. 
-Puede haber varios clientes conectados simultáneamente y en cada uno de ellos se reflejarán los cambios que se realicen en los productos sin necesidad de recargar la vista.
-Cuando un cliente se conecte, recibirá la lista de productos a representar en la vista.
+> > Consigna 1: Modificar el último entregable para que disponga de un canal de websocket que permita representar, por debajo del formulario de ingreso, una tabla con la lista de productos en tiempo real.
+> > Puede haber varios clientes conectados simultáneamente y en cada uno de ellos se reflejarán los cambios que se realicen en los productos sin necesidad de recargar la vista.
+> > Cuando un cliente se conecte, recibirá la lista de productos a representar en la vista.
 
->> Aspectos a incluir en el entregable:
-Para construir la tabla dinámica con los datos recibidos por websocket utilizar Handlebars en el frontend. Considerar usar archivos públicos para alojar la plantilla vacía, y obtenerla usando la función fetch( ). Recordar que fetch devuelve una promesa.
+> > Aspectos a incluir en el entregable:
+> > Para construir la tabla dinámica con los datos recibidos por websocket utilizar Handlebars en el frontend. Considerar usar archivos públicos para alojar la plantilla vacía, y obtenerla usando la función fetch( ). Recordar que fetch devuelve una promesa.
 
->> Consigna 2:  Añadiremos al proyecto un canal de chat entre los clientes y el servidor.
+> > Consigna 2: Añadiremos al proyecto un canal de chat entre los clientes y el servidor.
 
->> Aspectos a incluir en el entregable:
-En la parte inferior del formulario de ingreso se presentará el centro de mensajes almacenados en el servidor, donde figuren los mensajes de todos los usuarios identificados por su email. 
-El formato a representar será: email (texto negrita en azul) [fecha y hora (DD/MM/YYYY HH:MM:SS)](texto normal en marrón) : mensaje (texto italic en verde) 
-Además incorporar dos elementos de entrada: uno para que el usuario ingrese su email (obligatorio para poder utilizar el chat) y otro para ingresar mensajes y enviarlos mediante un botón. 
-Los mensajes deben persistir en el servidor en un archivo (ver segundo entregable).
+> > Aspectos a incluir en el entregable:
+> > En la parte inferior del formulario de ingreso se presentará el centro de mensajes almacenados en el servidor, donde figuren los mensajes de todos los usuarios identificados por su email.
+> > El formato a representar será: email (texto negrita en azul) [fecha y hora (DD/MM/YYYY HH:MM:SS)](texto normal en marrón) : mensaje (texto italic en verde)
+> > Además incorporar dos elementos de entrada: uno para que el usuario ingrese su email (obligatorio para poder utilizar el chat) y otro para ingresar mensajes y enviarlos mediante un botón.
+> > Los mensajes deben persistir en el servidor en un archivo (ver segundo entregable).
+
+# Clase 13
+
+### Color aleatorio con babel
+
+1. Realizar un programa que genere un color aleatorio en formato RGB (canal rojo, verde y azul entre 0 y 255) y lo muestre por consola. Este estará implementado en un archivo llamado color.js
+
+-   La funcionalidad debe estar implementada dentro de una clase y deberá utilizar sintaxis ES6 (const, let, arrow function y template string).
+    Convertir este código ES6 a JS5 con Babel online. Realizar esta conversión en forma automática dentro de un proyecto node.js que utilice Babel CLI
+
+### Color aleatorio con tsc
+
+1. Realizar un proyecto TypeScript node.js que genere un color aleatorio en formato RGB (canal rojo, verde y azul entre 0 y 255) y lo muestre por consola.
+
+-   La funcionalidad debe estar implementada dentro de una clase en un archivo color.ts y deberá utilizar sintaxis Typescript tipada.
+-   El proyecto deberá convertir este código TS a JS5 en forma automática con TSC CLI
