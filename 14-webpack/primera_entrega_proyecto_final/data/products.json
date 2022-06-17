@@ -1,0 +1,52 @@
+[
+  {
+    "id": 3,
+    "timestamp": 333333333,
+    "name": "name3",
+    "description": "descripción3",
+    "code": 333333,
+    "pic": "https://placeimg.com/640/480/any",
+    "price": 333,
+    "stock": 300
+  },
+  {
+    "id": 4,
+    "timestamp": 444444444,
+    "name": "name4",
+    "description": "descripción4",
+    "code": 444444,
+    "pic": "https://placeimg.com/640/480/any",
+    "price": 444,
+    "stock": 400
+  },
+  {
+    "id": 5,
+    "timestamp": 555555555,
+    "name": "name5",
+    "description": "descripción5",
+    "code": 555555,
+    "pic": "https://placeimg.com/640/480/any",
+    "price": 555,
+    "stock": 500
+  },
+  {
+    "timestamp": "Date.now()",
+    "name": "name",
+    "description": "descripción",
+    "code": "código",
+    "pic": "https://placeimg.com/640/480/any",
+    "price": 111,
+    "stock": 10,
+    "id": 6
+  },
+  {
+    "timestamp": "Date.now()",
+    "name": "name",
+    "description": "descripción",
+    "code": "código",
+    "pic": "https://placeimg.com/640/480/any",
+    "price": 111,
+    "stock": 10,
+    "id": 8
+  }
+]
