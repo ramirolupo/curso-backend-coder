@@ -2,14 +2,12 @@ import express from "express";
 import Product from "../controllers/controlProducts.js";
 const routerProducts = express.Router();
 
-//OK
 routerProducts.get('/', async (req, res) => {
 	let products = await Product.getProducts();
 	if (!products) return res.send({ message: 'No hay productos listados' });
 	res.send(products);
 });
 
-//OK
 routerProducts.get('/:id', async (req, res) => {
 	if (isNaN(req.params.id)) return res.send({ message: 'Ingresá el número del producto que quieres consultar' });
 	const id = parseInt(req.params.id);
@@ -18,7 +16,6 @@ routerProducts.get('/:id', async (req, res) => {
 	res.send(productFound);
 });
 
-//OK
 routerProducts.post('/', (req, res) => {
 	const { timestamp, name, description, code, pic, price, stock } = req.body;
 	const productToAdd = { timestamp, name, description, code, pic, price, stock };
@@ -26,7 +23,6 @@ routerProducts.post('/', (req, res) => {
 	res.send({ message: 'Producto agregado' });
 });
 
-//OK
 routerProducts.put('/:id', async (req, res) => {
 	if (isNaN(req.params.id)) return res.send({ message: 'Ingresá el número del producto que quieres editar' });
 	const id = parseInt(req.params.id);
@@ -36,7 +32,6 @@ routerProducts.put('/:id', async (req, res) => {
 	res.send({ message: 'Producto actualizado' });
 });
 
-//OK
 routerProducts.delete('/:id', async (req, res) => {
 	if (isNaN(req.params.id)) return res.send({ message: 'Ingresá el número del producto que quieres editar' });
 	const id = parseInt(req.params.id);
@@ -45,4 +40,4 @@ routerProducts.delete('/:id', async (req, res) => {
 	res.send({ message: 'Producto eliminado' });
 });
 
-export { routerProducts }
+export default routerProducts;
