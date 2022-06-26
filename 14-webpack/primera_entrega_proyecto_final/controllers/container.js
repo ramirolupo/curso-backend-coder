@@ -81,4 +81,7 @@ export default class Container {
     async writeData() {
         await fs.promises.writeFile(this.fileName, JSON.stringify(this.objects, null, 2));
     }
+    getProductsCart() {
+
+    }
 }

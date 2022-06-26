@@ -3,6 +3,7 @@ const routerCart = express.Router();
 import Container from '../controllers/container.js';
 
 const cart = new Container('./data/cart.json');
+console.log(cart);
 let admin;
 
 routerCart.post('/', (req, res) => {
@@ -17,6 +18,14 @@ routerCart.delete('/:id', (req, res) => {
 	const cartDeleted = cart.deleteById(id);
 	if (cartDeleted === -1) return res.json({ message: 'El ID no pertenece a un carrito listado' });
 	res.json({ message: 'Carrito eliminado' });
+});
+
+routerCart.get('/:id/products', (req, res) => {
+	const id = Number(req.params.id);
+	if (isNaN(id)) return res.send({ message: 'Ingresa el ID de un carrito listado' });
+	const cartSelected = cart.getById(id);
+	if (cartSelected == null) return res.send({ message: 'Ingresa el ID de un carrito listado' });
+	res.json(cartSelected.products);
 });
 
 export default routerCart;
