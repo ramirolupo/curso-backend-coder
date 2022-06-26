@@ -1,9 +1,9 @@
 import express from "express";
 const routerCart = express.Router();
 import Container from '../controllers/container.js';
+import { products } from "./routerProducts.js";
 
 const cart = new Container('./data/cart.json');
-console.log(cart);
 let admin;
 
 routerCart.post('/', (req, res) => {
@@ -25,7 +25,15 @@ routerCart.get('/:id/products', (req, res) => {
 	if (isNaN(id)) return res.send({ message: 'Ingresa el ID de un carrito listado' });
 	const cartSelected = cart.getById(id);
 	if (cartSelected == null) return res.send({ message: 'Ingresa el ID de un carrito listado' });
-	res.json(cartSelected.products);
+	res.json({ 'Productos': cartSelected.products });
+});
+
+routerCart.post('/:id/products', (req, res) => {
+	const idCartSelected = Number(req.params.id);
+	if (isNaN(idCartSelected)) return res.send({ message: 'Ingresa el ID de un carrito listado' });
+	const { idProduct } = req.body;
+	cart.saveProduct(idCartSelected, idProduct);
+	res.json({ message: 'Producto agregado' });
 });
 
 export default routerCart;

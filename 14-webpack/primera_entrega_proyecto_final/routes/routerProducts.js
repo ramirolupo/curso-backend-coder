@@ -36,4 +36,4 @@ routerProducts.delete('/:id', (req, res) => {
 	res.json({ message: 'Producto eliminado' });
 });
 
-export default routerProducts;
+export { routerProducts, products };

@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { products } from '../routes/routerProducts.js';
 
 export default class Container {
     constructor(fileName) {
@@ -81,7 +82,14 @@ export default class Container {
     async writeData() {
         await fs.promises.writeFile(this.fileName, JSON.stringify(this.objects, null, 2));
     }
-    getProductsCart() {
-
+    async saveProduct(idCartSelected, idProduct) {
+        try {
+            const cartSelected = this.getById(idCartSelected);
+            const productSelected = products.getById(idProduct);
+            cartSelected.products.push(productSelected);
+            this.writeData();
+        } catch (err) {
+            console.log(err);
+        }
     }
 }
