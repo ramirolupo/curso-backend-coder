@@ -299,21 +299,21 @@ thumbnail: (url al logo o foto del producto)
 
 -   <h1>Datos Personales</h1>
 -   <ul>
--                                                                                                               <li>(nombre)</li>
--                                                                                                               <li>(apellido)</li>
--                                                                                                               <li>(edad)</li>
--                                                                                                               <li>(email)</li>
--                                                                                                               <li>(teléfono)</li>
+-                                                                                                                                             <li>(nombre)</li>
+-                                                                                                                                             <li>(apellido)</li>
+-                                                                                                                                             <li>(edad)</li>
+-                                                                                                                                             <li>(email)</li>
+-                                                                                                                                             <li>(teléfono)</li>
 -   </ul>
 
 2. Con los datos que provienen desde un objeto:
 
 -   {
--                                                                                                               nombre: '...',
--                                                                                                               apellido: '...',
--                                                                                                               edad: ...,
--                                                                                                               email: '...',
--                                                                                                               telefono: '...'
+-                                                                                                                                             nombre: '...',
+-                                                                                                                                             apellido: '...',
+-                                                                                                                                             edad: ...,
+-                                                                                                                                             email: '...',
+-                                                                                                                                             telefono: '...'
 -   }
 
 3. Importar Handlebars vía CDN en el frontend para crear dicha vista en forma dinámica. Esta página será servida desde el espacio público de un servidor basado en node.js y express.
@@ -450,3 +450,34 @@ Cada mensaje de cliente se representará en un renglón aparte, anteponiendo el 
 
 -   La funcionalidad debe estar implementada dentro de una clase en un archivo color.ts y deberá utilizar sintaxis Typescript tipada.
 -   El proyecto deberá convertir este código TS a JS5 en forma automática con TSC CLI
+
+# Clase 14
+
+### Mensajería con webpack
+
+1. Crear tres archivos javascript que contengan una variable por cada archivo llamadas mensaje1, mensaje2 y mensaje3 respectivamente.
+2. En cada archivo, cargar la variable con un frase y representarla en consola luego de:
+
+-   Un segundo para el caso del mensaje 1.
+-   Dos segundos para el mensaje 2.
+-   Tres segundos para el mensaje 3.
+
+3.  Crear un proyecto que permita utilizar webpack como dependencia de desarrollo para empaquetar los tres archivos en uno sólo.
+4.  Escribir el script correspondiente para ejecutar el proceso automático, generando la versión de producción del proyecto.
+
+# Clase 16
+
+### Node + MariaDB
+
+Realizar un proyecto en Node.js que se conecte a la base de datos llamada ecommerce implementada en MariaDB y ejecute las siguientes procesos:
+
+1. Debe crear una tabla llamada articulos con la siguiente estructura: - Campos: - nombre tipo varchar 15 caracteres no nulo - codigo tipo varchar 10 caracteres no nulo - precio tipo float - stock tipo entero - id clave primaria autoincremental no nula
+2. Insertar 5 articulos en esa tabla, con datos de prueba con stocks positivos
+3. Listar la tabla mostrando los resultados en la consola
+4. Borrar el articulo con id = 3
+5. Actualizar el stock a 0 del articulo con id = 2
+
+Notas:
+
+-   Crear un único archivo ejecutable a través de node.js que realice lo pedido. Considerar que estos son procesos asincrónicos que devuelven promesas y deben ser anidados para mantener el orden de operación. Utilizar la sintaxis then/catch
+-   Agregar como primera acción que, en caso de existir la tabla, la borre (drop), así al ejecutar estas mismas tareas, empezamos desde cero sin errores y datos residuales.

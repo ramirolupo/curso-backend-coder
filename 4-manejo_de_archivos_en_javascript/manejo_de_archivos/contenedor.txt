@@ -9,18 +9,6 @@
     "title": "title",
     "price": 100,
     "thumbnail": "url de la foto del producto",
-    "id": 2
-  },
-  {
-    "title": "title",
-    "price": 100,
-    "thumbnail": "url de la foto del producto",
-    "id": 3
-  },
-  {
-    "title": "title",
-    "price": 100,
-    "thumbnail": "url de la foto del producto",
     "id": 4
   },
   {
@@ -58,5 +46,15 @@
     "price": 100,
     "thumbnail": "url de la foto del producto",
     "id": 10
+  },
+  {
+    "name": "name",
+    "lastName": "last name",
+    "id": 11
+  },
+  {
+    "name": "name",
+    "lastName": "last name",
+    "id": 12
   }
 ]

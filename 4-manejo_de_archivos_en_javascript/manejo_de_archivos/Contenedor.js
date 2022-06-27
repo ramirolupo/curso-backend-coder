@@ -3,21 +3,16 @@ const fs = require('fs');
 class Contenedor {
     constructor(fileName) {
         this.fileName = fileName;
-        this.arr = [];
+        this.objects = this.readData(this.fileName) || [];
     }
     //Genera ID
     async generateId() {
         try {
-            this.arr = await this.getAll() || [];
-            // console.log('this.arr', this.arr.length);
-            let maxId = this.arr.length;
-            // console.log('maxId', maxId);
-            this.arr.forEach(el => {
-                // console.log('el.id', el.id);
-                // console.log('maxId', maxId);
+            this.objects = await this.getAll() || [];
+            let maxId = this.objects.length;
+            this.objects.forEach(el => {
                 el.id > maxId ? maxId = el.id : maxId
             })
-            // console.log('maxId', maxId + 1);
             return maxId + 1;
         } catch (err) {
             console.log(err);
@@ -27,22 +22,16 @@ class Contenedor {
     async save(obj) {
         try {
             const readFile = await this.getAll();
-            // console.log('readFile', readFile);
             if (!readFile) {
                 obj.id = await this.generateId();
-                // console.log('obj.id', obj.id);
-                this.arr.push(obj);
-                // console.log('this.arr', this.arr);
-                fs.promises.writeFile(this.fileName, JSON.stringify(this.arr, null, 2));
+                this.objects.push(obj);
+                this.writeData(this.objects);
                 return obj.id;
             }
-            this.arr = readFile;
-            // console.log('this.arr', this.arr);
+            this.objects = readFile;
             obj.id = await this.generateId();
-            // console.log('obj.id', obj.id);
-            this.arr.push(obj);
-            // console.log('this.arr', this.arr);
-            fs.promises.writeFile(this.fileName, JSON.stringify(this.arr, null, 2));
+            this.objects.push(obj);
+            this.writeData(this.objects);
             return obj.id;
         } catch (err) {
             console.log(err);
@@ -51,10 +40,8 @@ class Contenedor {
     //Devuelve el objeto con el ID buscado
     async getById(id) {
         try {
-            this.arr = await this.getAll();
-            // console.log('this.arr', this.arr);
-            const obj = this.arr.find(el => el.id === Number(id));
-            // console.log('obj', obj);
+            this.objects = await this.getAll();
+            const obj = this.objects.find(el => el.id === Number(id));
             return obj ? obj : null;
         } catch (err) {
             console.log(err);
@@ -63,11 +50,8 @@ class Contenedor {
     //Devuelve un array con los objetos presentes en el archivo
     async getAll() {
         try {
-            const arr = await fs.promises.readFile(this.fileName, 'utf-8');
-            // console.log('arr', arr);
-            const arrParsed = JSON.parse(arr);
-            // console.log('arrParse', arrParse);
-            return arrParsed;
+            const data = await this.readData(this.fileName);
+            return data;
         } catch (err) {
             console.log(err);
         }
@@ -75,11 +59,9 @@ class Contenedor {
     //Elimina del archivo el objeto con el ID buscado
     async deleteById(id) {
         try {
-            this.arr = await this.getAll();
-            // console.log('this.arr', this.arr);
-            this.arr = this.arr.filter(el => el.id != Number(id));
-            // console.log('objDel', objDel);
-            fs.promises.writeFile(this.fileName, JSON.stringify(this.arr, null, 2));
+            this.objects = await this.getAll();
+            this.objects = this.objects.filter(el => el.id != Number(id));
+            this.writeData(this.objects);
         } catch (err) {
             console.log(err);
         }
@@ -87,14 +69,20 @@ class Contenedor {
     //Elimina todos los objetos guardados en el archivo
     async deleteAll() {
         try {
-            this.arr = await this.getAll();
-            // console.log('this.arr', this.arr);
-            this.arr = [];
-            fs.promises.writeFile(this.fileName, JSON.stringify(this.arr, null, 2));
-            // console.log('this.arr', this.arr);
+            this.objects = await this.getAll();
+            this.objects = [];
+            this.writeData(this.objects);
         } catch (err) {
             console.log(err);
         }
     }
+    readData(path) {
+        const data = JSON.parse(fs.readFileSync(path, 'utf-8'));
+        return data;
+    }
+    writeData(objects) {
+        fs.writeFileSync(this.fileName, JSON.stringify(objects, null, 2));
+    }
 }
+
 module.exports = Contenedor;

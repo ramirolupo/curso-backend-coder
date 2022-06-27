@@ -1,13 +1,12 @@
 import fs from 'fs';
 import { products } from '../routes/routerProducts.js';
-
 export default class Container {
     constructor(fileName) {
         this.fileName = fileName;
         this.objects = this.readData();
     }
     //Genera ID
-    async generateId() {
+    generateId() {
         try {
             if (this.objects.length === 0) return 1;
             return this.objects[this.objects.length - 1].id + 1;
@@ -73,23 +72,41 @@ export default class Container {
     }
     readData() {
         try {
-            const data = fs.readFileSync(this.fileName, 'utf-8');
-            return JSON.parse(data);
-        } catch {
-            return [];
+            return JSON.parse(fs.readFileSync(this.fileName, 'utf-8'));
+        } catch (error) {
+            console.log(error);
+            if (error.message.includes('no such file or directory')) return [];
         }
     }
     async writeData() {
         await fs.promises.writeFile(this.fileName, JSON.stringify(this.objects, null, 2));
     }
-    async saveProduct(idCartSelected, idProduct) {
+    saveProduct(idCartSelected, idProduct) {
         try {
             const cartSelected = this.getById(idCartSelected);
+            if (cartSelected == null) return;
             const productSelected = products.getById(idProduct);
+            if (productSelected == null) return;
             cartSelected.products.push(productSelected);
             this.writeData();
+            return 'Producto agregado!';
         } catch (err) {
             console.log(err);
+        }
+    }
+    deleteProduct(idCartSelected, idProduct) {
+        try {
+            console.log(idCartSelected, idProduct);
+            const cartSelected = this.getById(idCartSelected);
+            if (cartSelected == null) return;
+            const productToDelete = cartSelected.products.findIndex(product => product.id === idProduct);
+            if (productToDelete == -1) return;
+            console.log(cartSelected, productToDelete);
+            cartSelected.products.splice(productToDelete, 1);
+            this.writeData();
+            return 'Producto eliminado!';
+        } catch (error) {
+            console.log(error);
         }
     }
 }
