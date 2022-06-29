@@ -2,9 +2,8 @@ const express = require('express');
 const { Server: HttpServer } = require('http');
 const { Server: IOServer } = require('socket.io');
 const { engine } = require('express-handlebars');
-const { Container } = require('./container.js');
-const { optionsMariaDB } = require('../node_mariadb/options/mariaDB.js');
-const { optionsSQLite3 } = require('../node_sqlite/options/SQLite3.js');
+const Container = require('./container.js');
+const { optionsMariaDB, optionsSQLite3 } = require('./options/config.js');
 
 const PORT = 8080;
 const app = express();
@@ -14,7 +13,6 @@ const io = new IOServer(httpserver);
 const messages = new Container(optionsSQLite3, 'messages');
 const products = new Container(optionsMariaDB, 'products');
 
-
 app.use(express.static('views'));
 
 app.engine('handlebars', engine());
@@ -22,7 +20,7 @@ app.set('views', './views');
 app.set('view engine', 'handlebars');
 
 app.get('/', (req, res) => {
-    res.render('form', { products: products.objects, messages: messages.objects });
+    res.render('form');
 });
 
 io.on('connection', socket => {
@@ -30,12 +28,12 @@ io.on('connection', socket => {
     io.sockets.emit('products', products);
     io.sockets.emit('messages', messages);
     socket.on('product', product => {
-        console.log(product);
-        io.sockets.emit('products', 'Productos');
+        products.save(product);
+        io.sockets.emit('products', products.getAll());
     })
     socket.on('message', message => {
-        console.log(message);
-        io.sockets.emit('messages', 'Mensajes');
+        messages.save(message);
+        io.sockets.emit('messages', messages.getAll());
     })
 });
 

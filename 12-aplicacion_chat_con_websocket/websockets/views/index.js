@@ -69,6 +69,6 @@ socket.on('products', products => {
 	renderProducts(products);
 });
 
-socket.on('chat', messages => {
+socket.on('messages', messages => {
 	renderChat(messages);
 });

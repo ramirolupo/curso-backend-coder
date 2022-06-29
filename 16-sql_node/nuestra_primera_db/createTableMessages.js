@@ -1,12 +1,12 @@
-const { options } = require('../messages/options/SQLite3.js');
-const knex = require('knex')(options);
+const { optionsMariaDB } = require('./options/config.js');
+const knex = require('knex')(optionsMariaDB);
 
 knex.schema.createTable('messages', table => {
 	table.increments('id')
-	table.string('usermail')
+	table.string('email')
 	table.string('message')
 	table.string('date')
 })
-	.then(() => console.log('Tabla creada'))
+	.then(() => console.log('Table created'))
 	.catch(err => { console.log(err); throw err })
 	.finally(() => knex.destroy())
