@@ -9,7 +9,7 @@ routerProducts.get('/:id?', (req, res) => {
 	if (req.params.id == undefined) return res.send(products.getAll());
 	const id = Number(req.params.id);
 	const product = products.getById(id);
-	if (!product) return res.send({ message: 'El ID no pertenece a un producto listado' });
+	if (!product) return res.send({ message: 'El ID no pertenece a un producto listado' }).status(404);
 	res.json(product);
 });
 
@@ -23,16 +23,16 @@ routerProducts.post('/', (req, res) => {
 //Update product
 routerProducts.put('/:id', (req, res) => {
 	const id = Number(req.params.id);
-	if (isNaN(id)) return res.send({ message: 'Ingresa el ID de un producto listado' });
+	if (isNaN(id)) return res.send({ message: 'Ingresa el ID de un producto listado' }).status(400);
 	products.update(id, req.body);
 	res.json({ message: 'Producto actualizado' });
 });
 
 routerProducts.delete('/:id', (req, res) => {
 	const id = Number(req.params.id);
-	if (isNaN(id)) return res.send({ message: 'Ingresa el ID de un producto listado' });
+	if (isNaN(id)) return res.send({ message: 'Ingresa el ID de un producto listado' }).status(400);
 	const productDeleted = products.deleteById(id);
-	if (productDeleted === -1) return res.json({ message: 'El ID no pertenece a un producto listado' });
+	if (productDeleted === -1) return res.json({ message: 'El ID no pertenece a un producto listado' }).status(404);
 	res.json({ message: 'Producto eliminado' });
 });
 

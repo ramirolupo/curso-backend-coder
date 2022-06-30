@@ -57,7 +57,6 @@ export default class Container {
     //Elimina todos los objetos guardados en el archivo
     async deleteAll() {
         try {
-            this.objects = await this.getAll();
             this.objects = [];
             this.writeData();
         } catch (err) {
