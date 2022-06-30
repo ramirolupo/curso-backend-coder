@@ -20,17 +20,17 @@ $formAddProduct.addEventListener('submit', e => {
 });
 
 const renderProducts = products => {
-	// if (products.length > 0) $tableProducts.innerHTML = '';
-	// products.forEach(product => {
-	// 	$tableProducts.innerHTML += `
-	// 	<tr class="text-center">
-	// 		<td class="align-middle">${product.name}</td>
-	// 		<td class="align-middle">${product.price}</td>
-	// 		<td class="align-middle">
-	// 			<img src="${product.img}" alt="${product.name}" width="100px">
-	// 		</td>
-	// 	</tr>`;
-	// });
+	if (products.length > 0) $tableProducts.innerHTML = '';
+	products.forEach(product => {
+		$tableProducts.innerHTML += `
+		<tr class="text-center">
+			<td class="align-middle">${product.name}</td>
+			<td class="align-middle">${product.price}</td>
+			<td class="align-middle">
+				<img src="${product.img}" alt="${product.name}" width="100px">
+			</td>
+		</tr>`;
+	});
 }
 
 // Chat form
@@ -43,7 +43,7 @@ $chatForm.addEventListener('submit', e => {
 	e.preventDefault();
 	if ($userEmail.value == '') return alert('Ingresa tu email');
 	const message = {
-		userEmail: $userEmail.value,
+		email: $userEmail.value,
 		message: $chatMessage.value,
 		date: new Date().toLocaleString()
 	}
@@ -52,24 +52,22 @@ $chatForm.addEventListener('submit', e => {
 });
 
 const renderChat = messages => {
-	// if (messages.length > 0) $tableChat.innerHTML = '';
-	// messages.forEach(message => {
-	// 	$tableChat.innerHTML += `
-	// 	<div>
-	// 		<b class="text-primary">${message.userEmail}</b>
-	// 		[<span style="color: brown;">${message.date}</span>]
-	// 		: <i class="text-success">${message.message}</i>
-	// 	</div > `;
-	// })
-	// $chatMessage.focus();
+	if (messages.length > 0) $tableChat.innerHTML = '';
+	messages.forEach(message => {
+		$tableChat.innerHTML += `
+		<div>
+			<b class="text-primary">${message.email}</b>
+			[<span style="color: brown;">${message.date}</span>]
+			: <i class="text-success">${message.message}</i>
+		</div > `;
+	})
+	$chatMessage.focus();
 }
 
 socket.on('products', products => {
-	console.log(products);
-	// renderProducts(products);
+	renderProducts(products);
 });
 
 socket.on('messages', messages => {
-	console.log(messages);
-	// renderChat(messages);
+	renderChat(messages);
 });

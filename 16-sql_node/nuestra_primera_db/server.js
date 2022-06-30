@@ -10,8 +10,8 @@ const app = express();
 const httpserver = new HttpServer(app);
 const io = new IOServer(httpserver);
 
-const messages = new Container(optionsSQLite3, 'messages');
-const products = new Container(optionsMariaDB, 'products');
+const products = new Container(optionsSQLite3, 'products');
+const messages = new Container(optionsMariaDB, 'messages');
 
 app.use(express.static('views'));
 
@@ -19,21 +19,22 @@ app.engine('handlebars', engine());
 app.set('views', './views');
 app.set('view engine', 'handlebars');
 
-app.get('/', (req, res) => {
-    res.render('form');
+app.get('/', async (req, res) => {
+    const dbProducts = await products.getAll();
+    res.render('form', { dbProducts });
 });
 
 io.on('connection', socket => {
     console.log('Conexión establecida');
-    io.sockets.emit('products', products);
-    io.sockets.emit('messages', messages);
+    products.getAll().then(dbProducts => io.sockets.emit('products', dbProducts));
+    messages.getAll().then(dbMessages => io.sockets.emit('messages', dbMessages));
     socket.on('product', product => {
         products.save(product);
-        io.sockets.emit('products', products.getAll());
+        products.getAll().then(dbProducts => io.sockets.emit('products', dbProducts));
     })
     socket.on('message', message => {
         messages.save(message);
-        io.sockets.emit('messages', messages.getAll());
+        messages.getAll().then(dbMessages => io.sockets.emit('messages', dbMessages));
     })
 });
 

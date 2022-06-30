@@ -26,20 +26,35 @@ class Container {
     }
     getAll = async () => {
         try {
-            let objs = await this.knex.from(this.tableName).select('*');
+            let objs = await this.knex.from(this.tableName).select('*')
             return objs;
         } catch (err) {
 
         }
     }
-    deleteById() {
-
+    deleteById = async id => {
+        try {
+            this.knex.from(this.tableName).where('id', '=', id).del()
+            return { message: 'DONE!' };
+        } catch (err) {
+            return { message: 'ERROR' };
+        }
     }
-    deleteAll() {
-
+    deleteAll = async () => {
+        try {
+            this.knex.from(this.tableName).del()
+            return { message: 'DONE!' }
+        } catch (err) {
+            return { message: 'ERROR' };
+        }
     }
-    update() {
-
+    update = async obj => {
+        try {
+            this.knex.from(this.tableName).update(obj).update()
+            return { message: 'DONE!' };
+        } catch (err) {
+            return { message: 'ERROR' };
+        }
     }
 }
 

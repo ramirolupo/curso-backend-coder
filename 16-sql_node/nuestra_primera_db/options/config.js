@@ -1,7 +1,7 @@
 const optionsSQLite3 = {
 	client: 'sqlite3',
 	connection: {
-		filename: './DB/messages.sqlite'
+		filename: './db/products.sqlite'
 	},
 	useNullAsDefault: true
 }
@@ -12,7 +12,7 @@ const optionsMariaDB = {
 		host: '127.0.0.1',
 		user: 'root',
 		password: '',
-		database: 'products'
+		database: 'nuestra_primera_db'
 	}
 }
 
