@@ -14,35 +14,35 @@ routerCarts.post('/', (req, res) => {
 
 routerCarts.delete('/:id', (req, res) => {
 	const id = Number(req.params.id);
-	if (isNaN(id)) return res.send({ message: 'Ingresa el ID de un carrito listado' }).status(400);
+	if (isNaN(id)) return res.status(400).send({ message: 'Ingresa el ID de un carrito listado' });
 	const cartDeleted = carts.deleteById(id);
-	if (cartDeleted === -1) return res.json({ message: 'El ID no pertenece a un carrito listado' }).status(404);
+	if (cartDeleted === -1) return res.status(404).json({ message: 'El ID no pertenece a un carrito listado' });
 	res.json({ message: 'Carrito eliminado' });
 });
 
 routerCarts.get('/:id/products', (req, res) => {
 	const id = Number(req.params.id);
-	if (isNaN(id)) return res.send({ message: 'Ingresa el ID de un carrito listado' }).status(400);
+	if (isNaN(id)) return res.status(400).send({ message: 'Ingresa el ID de un carrito listado' });
 	const cartSelected = carts.getById(id);
-	if (cartSelected == null) return res.send({ message: 'Ingresa el ID de un carrito listado' }).status(404);
+	if (cartSelected == null) return res.status(404).send({ message: 'Ingresa el ID de un carrito listado' });
 	res.json({ 'Productos': cartSelected.products });
 });
 
 routerCarts.post('/:id/products', (req, res) => {
 	const idCartSelected = Number(req.params.id);
-	if (isNaN(idCartSelected)) return res.send({ message: 'Ingresa el ID de un carrito listado' }).status(400);
+	if (isNaN(idCartSelected)) return res.status(400).send({ message: 'Ingresa el ID de un carrito listado' });
 	const { idProduct } = req.body;
 	const productSaved = carts.saveProduct(idCartSelected, idProduct);
-	if (!productSaved) return res.send({ message: 'Error' }).status(404);
+	if (!productSaved) return res.status(404).send({ message: 'Error' });
 	res.json({ message: productSaved });
 });
 
 routerCarts.delete('/:id/products/:id_prod', (req, res) => {
 	const id = Number(req.params.id);
 	const id_prod = Number(req.params.id_prod);
-	if (isNaN(id) || isNaN(id_prod)) return res.send({ message: 'Ingresa el ID de un carrito listado' }).status(400);
+	if (isNaN(id) || isNaN(id_prod)) return res.status(400).send({ message: 'Ingresa el ID de un carrito listado' });
 	const productDeleted = carts.deleteProduct(id, id_prod);
-	if (productDeleted == -1 || !productDeleted) return res.send({ message: 'Error' }).status(404);
+	if (productDeleted == -1 || !productDeleted) return res.status(404).send({ message: 'Error' });
 	res.send({ message: productDeleted });
 });
 
