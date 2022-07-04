@@ -24,10 +24,12 @@ app.get('/', async (req, res) => {
     res.render('form', { dbProducts });
 });
 
-io.on('connection', socket => {
+io.on('connection', async socket => {
     console.log('Conexión establecida');
-    products.getAll().then(dbProducts => io.sockets.emit('products', dbProducts));
-    messages.getAll().then(dbMessages => io.sockets.emit('messages', dbMessages));
+    const dbProducts = await products.getAll();
+    io.sockets.emit('products', dbProducts);
+    const dbMessages = await messages.getAll();
+    io.sockets.emit('messages', dbMessages);
     socket.on('product', product => {
         products.save(product);
         products.getAll().then(dbProducts => io.sockets.emit('products', dbProducts));
