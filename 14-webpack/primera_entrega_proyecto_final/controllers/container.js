@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { products } from '../routes/routerProducts.js';
+import { products } from './controllerProducts.js';
 export default class Container {
     constructor(fileName) {
         this.fileName = fileName;
@@ -65,7 +65,7 @@ export default class Container {
     }
     update(id, data) {
         const objToUpdate = this.getById(id);
-        const indexObj = this.objects.findIndex((obj) => obj.id === objToUpdate.id);
+        const indexObj = this.objects.findIndex(obj => obj.id === objToUpdate.id);
         this.objects[indexObj] = { ...this.objects[indexObj], ...data };
         this.writeData();
     }
@@ -95,12 +95,10 @@ export default class Container {
     }
     deleteProduct(idCartSelected, idProduct) {
         try {
-            console.log(idCartSelected, idProduct);
             const cartSelected = this.getById(idCartSelected);
             if (cartSelected == null) return;
             const productToDelete = cartSelected.products.findIndex(product => product.id === idProduct);
             if (productToDelete == -1) return;
-            console.log(cartSelected, productToDelete);
             cartSelected.products.splice(productToDelete, 1);
             this.writeData();
             return 'Producto eliminado!';

@@ -1,49 +1,20 @@
 import express from "express";
+import { addCart, deleteCart, getProducts, addProductToCart, deleteProduct } from "../controllers/controllerCart.js";
 const routerCarts = express.Router();
-import Container from '../controllers/container.js';
 
-const carts = new Container('./data/cart.json');
-let admin;
+//Add a cart
+routerCarts.post('/', (req, res) => addCart(req, res));
 
-routerCarts.post('/', (req, res) => {
-	const products = req.body;
-	if (!products) return carts.save([]);
-	carts.save(products);
-	res.json({ message: 'Carrito agregado' });
-});
+//Delete cart
+routerCarts.delete('/:id', (req, res) => deleteCart(req, res));
 
-routerCarts.delete('/:id', (req, res) => {
-	const id = Number(req.params.id);
-	if (isNaN(id)) return res.status(400).send({ message: 'Ingresa el ID de un carrito listado' });
-	const cartDeleted = carts.deleteById(id);
-	if (cartDeleted === -1) return res.status(404).json({ message: 'El ID no pertenece a un carrito listado' });
-	res.json({ message: 'Carrito eliminado' });
-});
+//Get products form an specific cart
+routerCarts.get('/:id/products', (req, res) => getProducts(req, res));
 
-routerCarts.get('/:id/products', (req, res) => {
-	const id = Number(req.params.id);
-	if (isNaN(id)) return res.status(400).send({ message: 'Ingresa el ID de un carrito listado' });
-	const cartSelected = carts.getById(id);
-	if (cartSelected == null) return res.status(404).send({ message: 'Ingresa el ID de un carrito listado' });
-	res.json({ 'Productos': cartSelected.products });
-});
+//Add a product to a cart
+routerCarts.post('/:id/products', (req, res) => addProductToCart(req, res));
 
-routerCarts.post('/:id/products', (req, res) => {
-	const idCartSelected = Number(req.params.id);
-	if (isNaN(idCartSelected)) return res.status(400).send({ message: 'Ingresa el ID de un carrito listado' });
-	const { idProduct } = req.body;
-	const productSaved = carts.saveProduct(idCartSelected, idProduct);
-	if (!productSaved) return res.status(404).send({ message: 'Error' });
-	res.json({ message: productSaved });
-});
+//Delete a product from a cart
+routerCarts.delete('/:id/products/:id_prod', (req, res) => deleteProduct(req, res));
 
-routerCarts.delete('/:id/products/:id_prod', (req, res) => {
-	const id = Number(req.params.id);
-	const id_prod = Number(req.params.id_prod);
-	if (isNaN(id) || isNaN(id_prod)) return res.status(400).send({ message: 'Ingresa el ID de un carrito listado' });
-	const productDeleted = carts.deleteProduct(id, id_prod);
-	if (productDeleted == -1 || !productDeleted) return res.status(404).send({ message: 'Error' });
-	res.send({ message: productDeleted });
-});
-
-export { routerCarts, carts };
+export default routerCarts;
