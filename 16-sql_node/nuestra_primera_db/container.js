@@ -29,7 +29,8 @@ class Container {
             let objs = await this.knex.from(this.tableName).select('*')
             return objs;
         } catch (err) {
-
+            console.log(err);
+            return [];
         }
     }
     deleteById = async id => {

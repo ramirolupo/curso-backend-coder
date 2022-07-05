@@ -7,6 +7,8 @@ const $nameInput = document.querySelector('#name-product');
 const $priceInput = document.querySelector('#price-product');
 const $imgInput = document.querySelector('#img-product');
 const $tableProducts = document.querySelector('#table-products');
+const $sectionProduct = document.querySelector('#section-products');
+const $noProducts = document.querySelector('#no-products');
 
 $formAddProduct.addEventListener('submit', e => {
 	e.preventDefault();
@@ -20,9 +22,11 @@ $formAddProduct.addEventListener('submit', e => {
 });
 
 const renderProducts = products => {
-	if (products.length > 0) $tableProducts.innerHTML = '';
-	products.forEach(product => {
-		$tableProducts.innerHTML += `
+	if (products.length > 0) {
+		$noProducts.style.display = 'none';
+		$tableProducts.innerHTML = '';
+		products.forEach(product => {
+			$tableProducts.innerHTML += `
 		<tr class="text-center">
 			<td class="align-middle">${product.name}</td>
 			<td class="align-middle">${product.price}</td>
@@ -30,7 +34,10 @@ const renderProducts = products => {
 				<img src="${product.img}" alt="${product.name}" width="100px">
 			</td>
 		</tr>`;
-	});
+		});
+	} else {
+		$noProducts.style.display = 'block';
+	}
 }
 
 // Chat form
@@ -52,16 +59,18 @@ $chatForm.addEventListener('submit', e => {
 });
 
 const renderChat = messages => {
-	if (messages.length > 0) $tableChat.innerHTML = '';
-	messages.forEach(message => {
-		$tableChat.innerHTML += `
+	if (messages.length > 0) {
+		$tableChat.innerHTML = '';
+		messages.forEach(message => {
+			$tableChat.innerHTML += `
 		<div>
 			<b class="text-primary">${message.email}</b>
 			[<span style="color: brown;">${message.date}</span>]
 			: <i class="text-success">${message.message}</i>
 		</div > `;
-	})
-	$chatMessage.focus();
+		})
+		$chatMessage.focus();
+	}
 }
 
 socket.on('products', products => {

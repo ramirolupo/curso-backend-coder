@@ -46,7 +46,7 @@ const deleteProduct = (req, res) => {
 	if (isNaN(id) || isNaN(id_prod)) return res.status(400).send({ message: 'Ingresa el ID de un carrito listado' });
 	const productDeleted = carts.deleteProduct(id, id_prod);
 	if (productDeleted == -1 || !productDeleted) return res.status(404).send({ message: 'Error' });
-	res.send({ message: productDeleted });
+	res.json({ message: 'Producto eliminado' });
 }
 
 export { addCart, deleteCart, getProducts, addProductToCart, deleteProduct };
