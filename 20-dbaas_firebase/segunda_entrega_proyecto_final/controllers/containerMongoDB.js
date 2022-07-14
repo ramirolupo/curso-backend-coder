@@ -5,9 +5,9 @@ class Container {
 		this.model = mongoose.model(collection, schema);
 	}
 	//Save an object
-	async save(obj) {
+	save(obj) {
 		try {
-
+			this.model.create(obj);
 		} catch (err) {
 			console.log(err);
 		}
@@ -15,7 +15,7 @@ class Container {
 	//Get an object by ID
 	getById(id) {
 		try {
-
+			return this.model.findById(id);
 		} catch (err) {
 			console.log(err);
 		}
@@ -23,7 +23,7 @@ class Container {
 	//Get all objects
 	getAll() {
 		try {
-
+			return this.model.find();
 		} catch {
 
 		}
@@ -31,15 +31,7 @@ class Container {
 	//Delete one object
 	deleteById(id) {
 		try {
-
-		} catch (err) {
-			console.log(err);
-		}
-	}
-	//Delete all objects
-	async deleteAll() {
-		try {
-
+			this.model.findByIdAndDelete(id);
 		} catch (err) {
 			console.log(err);
 		}

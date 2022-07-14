@@ -1,6 +1,7 @@
 const express = require("express");
 const routerProducts = require('./routes/routerProducts.js');
 const routerCarts = require('./routes/routerCart.js');
+const { connect } = require("mongoose");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -16,5 +17,9 @@ app.use('*', (req, res) => {
 	res.send({ error: -2, descripcion: `ruta '${path[0]}' método '${method}' no implementada` });
 });
 
-const server = app.listen(PORT, () => console.log(`Server running on PORT ${PORT}`));
+const server = app.listen(process.env.PORT || PORT, async () => {
+	await connect('mongodb://localhost:27017/products');
+	console.log(`Server running on PORT ${PORT}`);
+});
+
 server.on('error', err => console.log(err));

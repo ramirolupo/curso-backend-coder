@@ -12,6 +12,13 @@ class Products extends Container {
 			stock: { type: Number, require: true }
 		});
 	}
+	updateProduct(id, data) {
+		try {
+			return this.model.findByIdAndUpdate(id, data);
+		} catch (error) {
+			console.log(error);
+		}
+	}
 }
 
 module.exports = Products;
