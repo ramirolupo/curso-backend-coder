@@ -3,18 +3,18 @@ const { addCart, deleteCart, getProducts, addProductToCart, deleteProduct } = re
 const routerCarts = express.Router();
 
 //Add a cart
-routerCarts.post('/', (req, res) => addCart(req, res));
+routerCarts.post('/', addCart);
 
 //Delete cart
-routerCarts.delete('/:id', (req, res) => deleteCart(req, res));
+routerCarts.delete('/:id', deleteCart);
 
 //Get products form an specific cart
-routerCarts.get('/:id/products', (req, res) => getProducts(req, res));
+routerCarts.get('/:id/products', getProducts);
 
 //Add a product to a cart
-routerCarts.post('/:id/products', (req, res) => addProductToCart(req, res));
+routerCarts.post('/:id/products', addProductToCart);
 
 //Delete a product from a cart
-routerCarts.delete('/:id/products/:id_prod', (req, res) => deleteProduct(req, res));
+routerCarts.delete('/:id/products/:id_prod', deleteProduct);
 
 module.exports = routerCarts;

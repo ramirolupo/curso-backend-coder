@@ -3,15 +3,15 @@ const { getProducts, addProduct, updateProduct, deleteProduct } = require("../co
 const routerProducts = express.Router();
 
 //Get all products or product selected
-routerProducts.get('/:id?', (req, res) => getProducts(req, res));
+routerProducts.get('/:id?', getProducts);
 
 //Add product
-routerProducts.post('/', (req, res) => addProduct(req, res));
+routerProducts.post('/', addProduct);
 
 //Update product
-routerProducts.put('/:id', (req, res) => updateProduct(req, res));
+routerProducts.put('/:id', updateProduct);
 
 //Delete product
-routerProducts.delete('/:id', (req, res) => deleteProduct(req, res));
+routerProducts.delete('/:id', deleteProduct);
 
 module.exports = routerProducts;
