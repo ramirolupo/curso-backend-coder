@@ -14,3 +14,5 @@ Sugerencia: no incluir los node_modules
 
 > > Opcional:
 > > Hacer lo mismo para bases de datos relacionales: MariaDB/SQLite3.
+
+Desde un input conseguir las variables:
