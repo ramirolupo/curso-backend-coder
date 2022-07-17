@@ -1,20 +1,20 @@
 const express = require("express");
-const { addCart, deleteCart, getProducts, addProductToCart, deleteProduct } = require("../controllers/controllerCart.js");
+const { addCart, deleteCart, getProducts, addProduct, deleteProduct } = require("../controllers/controllerCarts.js");
 const routerCarts = express.Router();
 
-//Add a cart
+//Add cart
 routerCarts.post('/', addCart);
 
 //Delete cart
 routerCarts.delete('/:id', deleteCart);
 
-//Get products form an specific cart
+//Get products from cart
 routerCarts.get('/:id/products', getProducts);
 
-//Add a product to a cart
-routerCarts.post('/:id/products', addProductToCart);
+//Add product to cart
+routerCarts.post('/:id/products', addProduct);
 
-//Delete a product from a cart
+//Delete product from cart
 routerCarts.delete('/:id/products/:id_prod', deleteProduct);
 
 module.exports = routerCarts;
