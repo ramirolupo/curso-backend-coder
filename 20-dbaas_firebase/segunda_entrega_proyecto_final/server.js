@@ -1,7 +1,7 @@
 const express = require("express");
 const routerProducts = require('./routes/routerProducts.js');
 const routerCarts = require('./routes/routerCart.js');
-const { connect, createConnection } = require("mongoose");
+const { connect } = require("mongoose");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -18,7 +18,7 @@ app.use('*', (req, res) => {
 });
 
 const server = app.listen(process.env.PORT || PORT, async () => {
-	await createConnection('mongodb://localhost:27017/products');
+	await connect('mongodb://localhost:27017/products');
 	console.log(`Server running on PORT ${PORT}`);
 });
 

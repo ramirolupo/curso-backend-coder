@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
+const { model } = require('mongoose');
 
 class Container {
 	constructor(collection, schema) {
-		this.model = mongoose.model(collection, schema);
+		this.model = model(collection, schema);
 	}
 	//Save an object
 	save(obj) {
 		try {
-			this.model.create(obj);
+			return this.model.create(obj);
 		} catch (err) {
 			console.log(err);
 		}
@@ -31,7 +31,7 @@ class Container {
 	//Delete one object
 	deleteById(id) {
 		try {
-			this.model.findByIdAndDelete(id);
+			return this.model.findByIdAndDelete(id);
 		} catch (err) {
 			console.log(err);
 		}

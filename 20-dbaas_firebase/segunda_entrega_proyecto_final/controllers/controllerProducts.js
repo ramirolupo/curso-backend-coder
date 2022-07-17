@@ -6,18 +6,17 @@ const products = new Products();
 const getProducts = async (req, res) => {
 	if (req.params.id == undefined) {
 		const allData = await products.getAll();
-		return res.send(allData);
+		return res.json(allData);
 	};
-	const id = req.params.id;
-	const product = await products.getById(id);
+	const product = await products.getById(req.params.id);
 	if (!product) return res.status(404).send({ message: 'El ID no pertenece a un producto listado' });
 	res.json(product);
 }
 
 //Add product
-const addProduct = (req, res) => {
+const addProduct = async (req, res) => {
 	const { name, description, code, pic, price, stock } = req.body;
-	products.save({ name, description, code, pic, price, stock });
+	await products.save({ name, description, code, pic, price, stock });
 	res.json({ message: 'Producto agregado' });
 }
 
@@ -28,9 +27,8 @@ const updateProduct = async (req, res) => {
 }
 
 //Delete product
-const deleteProduct = (req, res) => {
-	const id = req.params.id;
-	products.deleteById(id);
+const deleteProduct = async (req, res) => {
+	await products.deleteById(req.params.id);
 	res.json({ message: 'Producto eliminado' });
 };
 
