@@ -18,8 +18,7 @@ app.use('*', (req, res) => {
 });
 
 const server = app.listen(process.env.PORT || PORT, async () => {
-	// await connect('mongodb://localhost:27017/products');
-	// await connect('mongodb+srv://estebanzarate:nERlfPKfZtCRTu0K@cluster0.hggfd.mongodb.net/?retryWrites=true&w=majority')
+	await connect('mongodb://localhost:27017/products');
 	console.log(`Server running on PORT ${PORT}`);
 });
 
