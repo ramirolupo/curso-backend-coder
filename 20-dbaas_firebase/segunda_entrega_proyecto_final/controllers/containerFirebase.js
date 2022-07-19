@@ -1,13 +1,16 @@
-const { model } = require('mongoose');
+const admin = require('firebase-admin');
+const serviceAccount = require('../segunda-entrega-d2c67-firebase-adminsdk-3vy4j-84da86b190.json');
+admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
+const { getFirestore } = require('firebase-admin/firestore');
 
 class Container {
-	constructor(collection, schema) {
-		this.model = model(collection, schema);
+	constructor() {
+		this.db = getFirestore();
 	}
 	//Save an object
 	save(obj) {
 		try {
-			return this.model.create(obj);
+			return this.db.collection('products').add(obj);
 		} catch (err) {
 			console.log(err);
 		}

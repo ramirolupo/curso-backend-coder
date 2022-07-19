@@ -1,4 +1,5 @@
-const Products = require('../controllers/containerProducts.js');
+// const Products = require('../controllers/containerProducts.js');
+const Products = require('../controllers/containerFirebase.js');
 
 const products = new Products();
 
