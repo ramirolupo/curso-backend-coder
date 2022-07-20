@@ -7,6 +7,7 @@ const products = new Products();
 const getProducts = async (req, res) => {
 	if (req.params.id == undefined) return res.json(await products.getAll());
 	const product = await products.getById(req.params.id);
+	console.log(product);
 	if (!product) return res.status(404).send({ message: 'El ID no pertenece a un producto listado' });
 	res.json(product);
 }

@@ -1,7 +1,7 @@
 const admin = require('firebase-admin');
 const serviceAccount = require('../segunda-entrega-d2c67-firebase-adminsdk-3vy4j-84da86b190.json');
 admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
-const { getFirestore } = require('firebase-admin/firestore');
+const { getFirestore, doc, getDoc } = require('firebase-admin/firestore');
 
 class Container {
 	constructor() {
@@ -18,7 +18,8 @@ class Container {
 	//Get an object by ID
 	getById(id) {
 		try {
-			return this.model.findById(id);
+			const data = this.db.doc(`/products/${id}`).get();
+			return data;
 		} catch (err) {
 			console.log(err);
 		}
