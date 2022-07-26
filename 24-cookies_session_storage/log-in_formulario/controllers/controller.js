@@ -11,7 +11,7 @@ const home = (req, res) => {
 const destroy = (req, res) => {
 	try {
 		req.session.destroy();
-		res.render('../views/logout.handlebars');
+		res.render('../views/login.handlebars');
 	} catch (err) {
 		res.status(500).send('Error: ', err);
 	}
