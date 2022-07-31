@@ -4,14 +4,14 @@ const form = (req, res) => {
 
 const home = (req, res) => {
 	const { name } = req.body;
-	req.session.name = name;
+	req.session.name = name; e
 	res.redirect('/');
 }
 
 const destroy = (req, res) => {
 	try {
 		req.session.destroy();
-		res.render('../views/login.handlebars');
+		res.redirect('/');
 	} catch (err) {
 		res.status(500).send('Error: ', err);
 	}
