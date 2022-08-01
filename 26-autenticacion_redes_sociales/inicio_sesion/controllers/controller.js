@@ -4,8 +4,8 @@ const getIndex = (req, res) => res.render('form.handlebars')
 // Login
 const getLogin = (req, res) => {
 	if (req.isAuthenticated()) {
-		let user = req.user;
-		res.render('login.handlebars', { user });
+		let { username } = req.user;
+		res.render('form.handlebars', { username });
 	} else res.render('login.handlebars');
 };
 
@@ -20,8 +20,8 @@ const postLogin = (req, res) => {
 
 // Process signup
 const postSignup = (req, res) => {
-	const user = req.user;
-	res.render('form.handlebars', { user });
+	const { username } = req.user;
+	res.render('form.handlebars', { username });
 }
 
 const getFailLogin = (req, res) => res.render('faillogin.handlebars');

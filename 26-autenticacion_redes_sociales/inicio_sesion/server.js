@@ -3,8 +3,6 @@ const { Server: HttpServer } = require('http');
 const { Server: IOServer } = require('socket.io');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const MongoStore = require('connect-mongo');
-const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 const mongoose = require('mongoose');
 const { engine } = require('express-handlebars');
 const passport = require('passport');
@@ -29,19 +27,14 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(session({
     secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    rolling: true,
     cookie: {
         httpOnly: false,
         secure: false,
-        maxAge: 60000
-    },
-    rolling: true,
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({
-        mongoUrl: 'mongodb+srv://estebanzarate:nERlfPKfZtCRTu0K@cluster0.hggfd.mongodb.net/?retryWrites=true&w=majority',
-        mongoOptions: advancedOptions,
-        dbName: 'test'
-    })
+        maxAge: 100000
+    }
 }));
 
 app.use(passport.initialize());
@@ -73,6 +66,6 @@ io.on('connection', async socket => {
 
 const server = httpserver.listen(PORT, async () => {
     await mongoose.connect('mongodb+srv://estebanzarate:nERlfPKfZtCRTu0K@cluster0.hggfd.mongodb.net/?retryWrites=true&w=majority');
-    console.log(`Server running on port ${PORT}`)
+    console.log(`Server running on port ${PORT}`);
 });
 server.on('error', err => console.log(`Error: ${err}`));
