@@ -1,7 +1,6 @@
 const parseArgs = require('minimist');
 const yargs = require('yargs/yargs')(process.argv.slice(2));
 const argsYargs = yargs.argv;
-console.log('-->> argsYargs', argsYargs);
 
 const args = parseArgs(process.argv.slice(2));
 console.log('-->> args', args);
