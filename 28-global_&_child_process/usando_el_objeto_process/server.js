@@ -69,8 +69,8 @@ io.on('connection', async socket => {
 	});
 });
 
-const server = httpserver.listen(PORT, async () => {
-	await mongoose.connect(process.env.MONGODBURL);
+const server = httpserver.listen(PORT, () => {
+	// mongoose.connect(process.env.MONGODBURL);
 	console.log(`Server running on port ${PORT}`);
 });
 server.on('error', err => console.log(`Error: ${err}`));

@@ -19,5 +19,5 @@ app.get('/personas', (req, res) => {
 app.post('/personas', (req, res) => {
     const { nombre, apellido, edad } = req.body;
     personas.push({ nombre, apellido, edad });
-    res.render('index', { personas });
+    // res.render('index', { personas });
 });

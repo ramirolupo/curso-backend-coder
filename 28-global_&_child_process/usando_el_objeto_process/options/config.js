@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const optionsSQLite3 = {
 	client: 'sqlite3',
 	connection: {
@@ -9,9 +11,9 @@ const optionsSQLite3 = {
 const optionsMariaDB = {
 	client: 'mysql',
 	connection: {
-		host: '127.0.0.1',
-		user: 'root',
-		password: '',
+		host: process.env.MYSQL_HOST,
+		user: process.env.MYSQL_USER,
+		password: process.env.MYSQL_PASS,
 		database: 'nuestra_primera_db'
 	}
 }

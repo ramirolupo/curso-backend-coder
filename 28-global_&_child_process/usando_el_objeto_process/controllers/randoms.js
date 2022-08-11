@@ -7,8 +7,11 @@ process.on('message', msg => {
 const randomNum = (cantidad, obj) => {
 	for (let i = 0; i < cantidad; i++) {
 		const random = Math.floor(Math.random() * 10);
-		if (obj[random]) obj[random]++;
-		else obj[random] = 1;
+		if (obj[random]) {
+			obj[random]++;
+			continue;
+		}
+		obj[random] = 1;
 	}
 	return obj;
 };
