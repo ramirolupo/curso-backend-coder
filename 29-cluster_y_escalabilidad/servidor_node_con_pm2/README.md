@@ -1,7 +1,7 @@
 # SERVIDOR NODE CON PM2
 
 Poner en marcha dos servidores (con el formato del primer ejercicio: sin cluster) utilizando PM2.
-Uno de los servidores escuchará en el puerto 8081 y se ejecutará en modo 'fork'.El otro lo hará en el puerto 8082 y se ejecutará en modo 'cluster'.
+Uno de los servidores escuchará en el puerto 8081 y se ejecutará en modo 'fork'. El otro lo hará en el puerto 8082 y se ejecutará en modo 'cluster'.
 
 -   Generar un request a cada uno de ellos comprobando que respondan adecuadamente.
 -   Verificar en el sistema operativo la cantidad de procesos levantados y analizar el porqué.
