@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const { fork } = require('child_process');
-const { sumar } = require('./controller/controller');
+const { sum } = require('./controller/controller');
 
 let visitas = 0;
 app.get('/', (req, res) => {
@@ -9,20 +9,18 @@ app.get('/', (req, res) => {
 });
 
 app.get('/calculo-bloq', (req, res) => {
-    const resultado = sumar();
+    const resultado = sum();
     res.send(`El resultado de la suma es: ${resultado}`);
 });
 
 app.get('/calculo-nobloq', (req, res) => {
     const child = fork(__dirname + '/controller/controller');
-    console.log(`PID del proceso padre: ${process.pid}`);
-    child.send('start');
-    child.on('message', message => {
-        child.on('close', code => {
-            console.log(`Worker cerrado. Código: ${code}`);
-        });
-        res.send(message);
+    child.on('message', msg => {
+        if (msg == 'ready') {
+            child.send({ PID: child.pid });
+        } else res.send(msg);
     });
+
 });
 
 const PORT = 8080;

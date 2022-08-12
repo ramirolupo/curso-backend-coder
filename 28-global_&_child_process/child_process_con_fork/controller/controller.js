@@ -1,16 +1,18 @@
-const sumar = () => {
-    let suma = 0;
+const sum = () => {
+    let sum = 0;
     for (let i = 0; i < 5e9; i++) {
-        suma += 1;
+        sum += 1;
     }
-    return suma;
+    return sum;
 }
 
-process.on('message', () => {
-    console.log(`PID del proceso hijo: ${process.pid}`);
-    let resultado = sumar();
-    process.send(`Resultado de la suma: ${resultado}`);
+process.on('message', msg => {
+    console.log(`Process ${msg.PID} open!`);
+    let result = sum();
+    process.send(`Resultado de la suma: ${result}`);
     process.exit();
 });
 
-module.exports.sumar = sumar;
+process.send('ready');
+
+module.exports.sum = sum;
