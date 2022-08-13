@@ -1,8 +1,6 @@
 const cluster = require('cluster');
 const http = require('http');
 const numCPUs = require('os').cpus().length;
-const cp = require('child_process');
-console.log(cp.fork());
 
 if (cluster.isMaster) {
 	console.log(`Master ${process.pid} is running`);
